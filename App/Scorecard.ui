@@ -1,0 +1,1041 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>912</width>
+    <height>1177</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>20</y>
+      <width>321</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>ICC Champions Trophy 2017</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>90</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pakistan</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>90</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>India</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>90</y>
+      <width>41</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>V/S</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>130</y>
+      <width>55</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>338/4</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>130</y>
+      <width>55</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>150/10</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>150</y>
+      <width>55</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(50)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>150</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(33.4)</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>240</y>
+      <width>781</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>781</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <row>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>3</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>4</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>5</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>6</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>7</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>8</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>9</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>10</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>11</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Batsmen</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Runs</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Balls</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>4s</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>6s</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>S/R</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>R. Sharma</string>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>3</string>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="0" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="0" column="5">
+     <property name="text">
+      <string>0.00</string>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string>S. Dhawan</string>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string>21</string>
+     </property>
+    </item>
+    <item row="1" column="2">
+     <property name="text">
+      <string>22</string>
+     </property>
+    </item>
+    <item row="1" column="3">
+     <property name="text">
+      <string>4</string>
+     </property>
+    </item>
+    <item row="1" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="1" column="5">
+     <property name="text">
+      <string>95.45</string>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string>V.Kholi (c)</string>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string>5</string>
+     </property>
+    </item>
+    <item row="2" column="2">
+     <property name="text">
+      <string>9</string>
+     </property>
+    </item>
+    <item row="2" column="3">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="2" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="2" column="5">
+     <property name="text">
+      <string>55.56</string>
+     </property>
+    </item>
+    <item row="3" column="0">
+     <property name="text">
+      <string>Y.Singh</string>
+     </property>
+    </item>
+    <item row="3" column="1">
+     <property name="text">
+      <string>22</string>
+     </property>
+    </item>
+    <item row="3" column="2">
+     <property name="text">
+      <string>31</string>
+     </property>
+    </item>
+    <item row="3" column="3">
+     <property name="text">
+      <string>4</string>
+     </property>
+    </item>
+    <item row="3" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="3" column="5">
+     <property name="text">
+      <string>70.97</string>
+     </property>
+    </item>
+    <item row="4" column="0">
+     <property name="text">
+      <string>MS Dhoni (wk)</string>
+     </property>
+    </item>
+    <item row="4" column="1">
+     <property name="text">
+      <string>4</string>
+     </property>
+    </item>
+    <item row="4" column="2">
+     <property name="text">
+      <string>16</string>
+     </property>
+    </item>
+    <item row="4" column="3">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="4" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="4" column="5">
+     <property name="text">
+      <string>25.00</string>
+     </property>
+    </item>
+    <item row="5" column="0">
+     <property name="text">
+      <string>K. Jadhav</string>
+     </property>
+    </item>
+    <item row="5" column="1">
+     <property name="text">
+      <string>9</string>
+     </property>
+    </item>
+    <item row="5" column="2">
+     <property name="text">
+      <string>13</string>
+     </property>
+    </item>
+    <item row="5" column="3">
+     <property name="text">
+      <string>2</string>
+     </property>
+    </item>
+    <item row="5" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="5" column="5">
+     <property name="text">
+      <string>69.23</string>
+     </property>
+    </item>
+    <item row="6" column="0">
+     <property name="text">
+      <string>H. Pandya</string>
+     </property>
+    </item>
+    <item row="6" column="1">
+     <property name="text">
+      <string>76</string>
+     </property>
+    </item>
+    <item row="6" column="2">
+     <property name="text">
+      <string>43</string>
+     </property>
+    </item>
+    <item row="6" column="3">
+     <property name="text">
+      <string>4</string>
+     </property>
+    </item>
+    <item row="6" column="4">
+     <property name="text">
+      <string>6</string>
+     </property>
+    </item>
+    <item row="6" column="5">
+     <property name="text">
+      <string>176.74</string>
+     </property>
+    </item>
+    <item row="7" column="0">
+     <property name="text">
+      <string>R. Jadeja</string>
+     </property>
+    </item>
+    <item row="7" column="1">
+     <property name="text">
+      <string>15</string>
+     </property>
+    </item>
+    <item row="7" column="2">
+     <property name="text">
+      <string>26</string>
+     </property>
+    </item>
+    <item row="7" column="3">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="7" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="7" column="5">
+     <property name="text">
+      <string>57.69</string>
+     </property>
+    </item>
+    <item row="8" column="0">
+     <property name="text">
+      <string>R. Ashwin</string>
+     </property>
+    </item>
+    <item row="8" column="1">
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item row="8" column="2">
+     <property name="text">
+      <string>3</string>
+     </property>
+    </item>
+    <item row="8" column="3">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="8" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="8" column="5">
+     <property name="text">
+      <string>33.33</string>
+     </property>
+    </item>
+    <item row="9" column="0">
+     <property name="text">
+      <string>B. Kumar</string>
+     </property>
+    </item>
+    <item row="9" column="1">
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item row="9" column="2">
+     <property name="text">
+      <string>8</string>
+     </property>
+    </item>
+    <item row="9" column="3">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="9" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="9" column="5">
+     <property name="text">
+      <string>12.50</string>
+     </property>
+    </item>
+    <item row="10" column="0">
+     <property name="text">
+      <string>J. Bumrah</string>
+     </property>
+    </item>
+    <item row="10" column="1">
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item row="10" column="2">
+     <property name="text">
+      <string>9</string>
+     </property>
+    </item>
+    <item row="10" column="3">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="10" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="10" column="5">
+     <property name="text">
+      <string>11.11</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>690</y>
+      <width>81</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Extras</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>710</y>
+      <width>91</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Total Runs</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>690</y>
+      <width>101</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>3  (W 1, LB 2)</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_12">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>710</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>158 (10 wkts, 30.3 ov</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>760</y>
+      <width>781</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>781</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <row>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>2</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>3</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>4</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>5</string>
+     </property>
+    </row>
+    <row>
+     <property name="text">
+      <string>6</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Bowler</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>O</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>M</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>R</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>W</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Econ</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>M. Amir</string>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>6.0</string>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>2</string>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>16</string>
+     </property>
+    </item>
+    <item row="0" column="4">
+     <property name="text">
+      <string>3</string>
+     </property>
+    </item>
+    <item row="0" column="5">
+     <property name="text">
+      <string>2.67</string>
+     </property>
+    </item>
+    <item row="1" column="0">
+     <property name="text">
+      <string>J. Khan</string>
+     </property>
+    </item>
+    <item row="1" column="1">
+     <property name="text">
+      <string>6.0</string>
+     </property>
+    </item>
+    <item row="1" column="2">
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item row="1" column="3">
+     <property name="text">
+      <string>20</string>
+     </property>
+    </item>
+    <item row="1" column="4">
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item row="1" column="5">
+     <property name="text">
+      <string>3.33</string>
+     </property>
+    </item>
+    <item row="2" column="0">
+     <property name="text">
+      <string>M. Hafeez</string>
+     </property>
+    </item>
+    <item row="2" column="1">
+     <property name="text">
+      <string>1.0</string>
+     </property>
+    </item>
+    <item row="2" column="2">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="2" column="3">
+     <property name="text">
+      <string>13</string>
+     </property>
+    </item>
+    <item row="2" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="2" column="5">
+     <property name="text">
+      <string>13.00</string>
+     </property>
+    </item>
+    <item row="3" column="0">
+     <property name="text">
+      <string>H. Ali</string>
+     </property>
+    </item>
+    <item row="3" column="1">
+     <property name="text">
+      <string>6.3</string>
+     </property>
+    </item>
+    <item row="3" column="2">
+     <property name="text">
+      <string>1</string>
+     </property>
+    </item>
+    <item row="3" column="3">
+     <property name="text">
+      <string>19</string>
+     </property>
+    </item>
+    <item row="3" column="4">
+     <property name="text">
+      <string>3</string>
+     </property>
+    </item>
+    <item row="3" column="5">
+     <property name="text">
+      <string>2.92</string>
+     </property>
+    </item>
+    <item row="4" column="0">
+     <property name="text">
+      <string>S. Khan</string>
+     </property>
+    </item>
+    <item row="4" column="1">
+     <property name="text">
+      <string>7</string>
+     </property>
+    </item>
+    <item row="4" column="2">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="4" column="3">
+     <property name="text">
+      <string>60</string>
+     </property>
+    </item>
+    <item row="4" column="4">
+     <property name="text">
+      <string>2</string>
+     </property>
+    </item>
+    <item row="4" column="5">
+     <property name="text">
+      <string>8.57</string>
+     </property>
+    </item>
+    <item row="5" column="0">
+     <property name="text">
+      <string>I. Wasim</string>
+     </property>
+    </item>
+    <item row="5" column="1">
+     <property name="text">
+      <string>4</string>
+     </property>
+    </item>
+    <item row="5" column="2">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="5" column="3">
+     <property name="text">
+      <string>28</string>
+     </property>
+    </item>
+    <item row="5" column="4">
+     <property name="text">
+      <string>0</string>
+     </property>
+    </item>
+    <item row="5" column="5">
+     <property name="text">
+      <string>6.54</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="label_13">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1040</y>
+      <width>91</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Toss:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_14">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>1080</y>
+      <width>55</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Venue:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_15">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>1040</y>
+      <width>291</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>India won the toss and elected to bowl first</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_16">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>1080</y>
+      <width>111</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>The Oval</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>200</y>
+      <width>321</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pakistan's Innings</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>200</y>
+      <width>281</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>India's Innings</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_17">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>110</y>
+      <width>231</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Pakistan won by 180 runs</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>912</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
