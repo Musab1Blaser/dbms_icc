@@ -24,12 +24,12 @@
    </property>
    <column>
     <property name="text">
-     <string>Country</string>
+     <string>Country Code</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>Country Code</string>
+     <string>Country Name</string>
     </property>
    </column>
   </widget>
