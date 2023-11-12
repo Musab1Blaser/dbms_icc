@@ -432,17 +432,22 @@ QPushButton:hover {
       </row>
       <column>
        <property name="text">
-        <string>Ranking</string>
+        <string>Team ID</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Country</string>
+        <string>Country Name</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Rating</string>
+        <string>Category</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Format</string>
        </property>
       </column>
       <item row="0" column="0">
@@ -455,11 +460,6 @@ QPushButton:hover {
         <string>Australia</string>
        </property>
       </item>
-      <item row="0" column="2">
-       <property name="text">
-        <string>270</string>
-       </property>
-      </item>
       <item row="1" column="0">
        <property name="text">
         <string>2</string>
@@ -468,11 +468,6 @@ QPushButton:hover {
       <item row="1" column="1">
        <property name="text">
         <string>Netherlands</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>267</string>
        </property>
       </item>
      </widget>
@@ -984,24 +979,14 @@ QPushButton:hover {
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
       <column>
        <property name="text">
-        <string>Ranking</string>
+        <string>Player ID</string>
        </property>
       </column>
       <column>
        <property name="text">
-        <string>Player</string>
+        <string>Player Name</string>
        </property>
       </column>
       <column>
@@ -1011,39 +996,19 @@ QPushButton:hover {
       </column>
       <column>
        <property name="text">
-        <string>Rating</string>
+        <string>Age</string>
        </property>
       </column>
-      <item row="0" column="0">
+      <column>
        <property name="text">
-        <string>1</string>
+        <string>Gender</string>
        </property>
-      </item>
-      <item row="0" column="2">
+      </column>
+      <column>
        <property name="text">
-        <string>Australia</string>
+        <string>Role</string>
        </property>
-      </item>
-      <item row="0" column="3">
-       <property name="text">
-        <string>270</string>
-       </property>
-      </item>
-      <item row="1" column="0">
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>Netherlands</string>
-       </property>
-      </item>
-      <item row="1" column="3">
-       <property name="text">
-        <string>267</string>
-       </property>
-      </item>
+      </column>
      </widget>
      <widget class="QPushButton" name="Players_View_Button">
       <property name="geometry">
@@ -1720,7 +1685,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>808</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -61,7 +61,7 @@
     <string>New Player</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Add_Player_Button">
+  <widget class="QPushButton" name="Add_to_Team_Button">
    <property name="geometry">
     <rect>
      <x>540</x>
@@ -71,7 +71,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Add Player</string>
+    <string>Add to Team</string>
    </property>
   </widget>
   <widget class="QLabel" name="Error_Label">

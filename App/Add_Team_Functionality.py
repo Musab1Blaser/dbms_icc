@@ -81,7 +81,8 @@ class AddTeamDialog(QDialog):
             # print(uname)
 
             # encrypt password
-            enc_pwd = hashlib.sha256(uname.encode("utf-8")).hexdigest()
+            pwd = self.Password_Entry.text()
+            enc_pwd = hashlib.sha256(pwd.encode("utf-8")).hexdigest()
             # print(len(enc_pwd))
 
             # add power user

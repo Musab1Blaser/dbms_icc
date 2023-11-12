@@ -23,6 +23,7 @@ CREATE TABLE Power_Users (
 CREATE TABLE Players (
     player_id INT PRIMARY KEY IDENTITY(1,1),
     player_name NVARCHAR(255) NOT NULL,
+	country_code NVARCHAR(3) REFERENCES Countries(country_code),
     age INT,
     gender CHAR(1),
     role NVARCHAR(255) NOT NULL
@@ -30,7 +31,7 @@ CREATE TABLE Players (
 
 -- Create Plays_For table
 CREATE TABLE Plays_For (
-    roll_no INT PRIMARY KEY,
+    roll_no INT PRIMARY KEY IDENTITY(1,1),
     player_id INT REFERENCES Players(player_id),
     team_id INT REFERENCES Teams(team_id)
 );
