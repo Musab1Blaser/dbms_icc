@@ -814,7 +814,7 @@ QPushButton:hover {
      <widget class="QGroupBox" name="Search_Player_GroupBox">
       <property name="geometry">
        <rect>
-        <x>120</x>
+        <x>70</x>
         <y>410</y>
         <width>301</width>
         <height>211</height>
@@ -1013,10 +1013,10 @@ QPushButton:hover {
      <widget class="QPushButton" name="Players_View_Button">
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>570</y>
-        <width>151</width>
-        <height>51</height>
+        <x>400</x>
+        <y>590</y>
+        <width>131</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -1043,7 +1043,7 @@ QPushButton:hover {
      <widget class="QGroupBox" name="Players_Role_GroupBox">
       <property name="geometry">
        <rect>
-        <x>440</x>
+        <x>390</x>
         <y>410</y>
         <width>151</width>
         <height>151</height>
@@ -1170,6 +1170,274 @@ QPushButton:hover {
        <string>Match History</string>
       </property>
      </widget>
+     <widget class="QTableWidget" name="Match_History_Table">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>161</y>
+        <width>541</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Format</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Time</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Venue</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 2</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QGroupBox" name="Players_Format_GroupBox_3">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>60</y>
+        <width>301</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Format</string>
+      </property>
+      <widget class="QPushButton" name="Players_Format_T20I_Button_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>81</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>T20I</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="Players_Format_ODI_Button_3">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>30</y>
+         <width>81</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>ODI</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="Players_Format_Test_Button_3">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>30</y>
+         <width>81</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Test</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="Players_Category_Mens_Button_5">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>90</y>
+        <width>81</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Mens</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Players_Category_Mens_Button_3">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>90</y>
+        <width>81</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Womens</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Players_Category_Mens_Button_6">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>570</y>
+        <width>91</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Filter Matches</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Players_Category_Mens_Button_4">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>570</y>
+        <width>91</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string> Match Details</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Scheduled_Fixtures_Page">
      <widget class="QLabel" name="Scheduled_Fixtures_Page_Label">
@@ -1190,6 +1458,259 @@ QPushButton:hover {
       </property>
       <property name="text">
        <string>Scheduled Fixtures</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>50</x>
+        <y>160</y>
+        <width>541</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <column>
+       <property name="text">
+        <string>Format</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>New Column</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Tournament</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Venue</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 2</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 1 confirmation</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 2 confirmation</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QGroupBox" name="Players_Format_GroupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>60</y>
+        <width>301</width>
+        <height>81</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="title">
+       <string>Format</string>
+      </property>
+      <widget class="QPushButton" name="Players_Format_T20I_Button_4">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>30</y>
+         <width>81</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>T20I</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="Players_Format_ODI_Button_4">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>30</y>
+         <width>81</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>ODI</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="Players_Format_Test_Button_4">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>30</y>
+         <width>81</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Test</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QPushButton" name="Players_Format_T20I_Button_5">
+      <property name="geometry">
+       <rect>
+        <x>80</x>
+        <y>90</y>
+        <width>81</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Mens</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Players_Format_T20I_Button_6">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>90</y>
+        <width>81</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Womens</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="Players_Format_T20I_Button_7">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>570</y>
+        <width>91</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Filter Matches</string>
       </property>
      </widget>
     </widget>
@@ -1685,7 +2206,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>808</width>
-     <height>21</height>
+     <height>18</height>
     </rect>
    </property>
   </widget>

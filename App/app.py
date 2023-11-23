@@ -81,6 +81,7 @@ class UI(QMainWindow):
         # Update tables
         self.populate_teams_table()
         self.populate_players_table()
+        self.populate_matches_table()
 
         # connect log in and log out buttons to their respective dialogs
         self.Log_In_Button.clicked.connect(self.login_attempt)
@@ -184,6 +185,34 @@ class UI(QMainWindow):
 
         # Close the database connection
         connection.close()
+        
+    def populate_matches_table(self):
+        connection = pyodbc.connect(connection_string)
+        cursor = connection.cursor()
+
+        cursor.execute("select format, match_date, match_time, venue, team1_id, team2_id from Matches where match_id in (select match_id from Match_Results)")
+
+        self.Match_History_Table.setRowCount(0)
+
+        result = cursor.fetchall()
+
+        # Fetch all rows and populate the table
+        for row_index, row_data in enumerate(result):
+            self.Match_History_Table.insertRow(row_index)
+            # offset = 0
+            # country = ""
+            for col_index, cell_data in enumerate(row_data):
+                # if (col_index == 2):
+                #     cell_data = str(cell_data)
+                #     tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
+                #     cell_data = tmp.fetchone()[0]
+
+                item = QTableWidgetItem(str(cell_data))
+                self.Match_History_Table.setItem(row_index, col_index, item)
+
+        # Close the database connection
+        connection.close()
+        
 
 
     def add_team(self):
@@ -198,11 +227,18 @@ class UI(QMainWindow):
 
 
 
-server = "LAPTOP-D5M397KF\DBMS_LAB6"
+server = 'desktop-f0ere45'
 database = "ICC_Cricket_Management"
+windows_authentication = True 
 username = "sa"
 password = "password123"
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
+connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+
+
+# if windows_authentication:
+#     connection_string = f'DRIVER={{ODBC Driver 17 for SQLServer}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+# else:    
+#     connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
 app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
 window = UI(connection_string) # Create an instance of our window
