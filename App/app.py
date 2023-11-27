@@ -8,6 +8,7 @@ import sys
 
 from Add_Team_Functionality import AddTeamDialog
 from Add_Player_Functionality import AddPlayerDialog
+from Add_Match_Functionality import AddMatchDialog
 
 class LogOutDialog(QDialog):
     def __init__(self):
@@ -61,6 +62,7 @@ class UI(QMainWindow):
         self.connection_string = connection_string # store connection string locally
 
         self.status = -1 #User role -1 -> guest, 0 -> icc manager, 1.. -> team_id
+        self.cur_uname = "Guest"
 
         self.Menu_Pages_Widget.setCurrentIndex(0)
         self.Menu_Buttons = [self.Teams_Button, self.Players_Button, self.Match_History_Button, self.Scheduled_Fixtures_Button, self.Pending_Matches_Button, self.Add_Team_Button, self.Add_Player_Button]
@@ -91,13 +93,19 @@ class UI(QMainWindow):
         self.Add_Team_Button.clicked.connect(self.add_team)
         self.Add_Player_Button.clicked.connect(self.add_player)
 
+        # connect internal buttons
+
+        # Pending Matches
+        self.Pending_Matches_Add_Match_Button.clicked.connect(self.add_pending_match)
+
     def login_attempt(self): # manages the change in option visibility between users
         dlg = LogInDialog(connection_string)
         if dlg.exec():
             if dlg.status == 0:
                 self.status = dlg.status
                 print("Logged in as ICC Manager")
-                self.Logged_in_as_Label.setText("ICC_Manager")
+                self.cur_uname = "ICC_Manager"
+                self.Logged_in_as_Label.setText(self.cur_uname)
                 self.Pending_Matches_Remove_Match_Button.show()
                 self.Pending_Matches_Add_Match_Button.show()
                 self.Pending_Matches_Respond_Button.hide()
@@ -112,8 +120,8 @@ class UI(QMainWindow):
                 connection = pyodbc.connect(self.connection_string)
                 cursor = connection.cursor()
                 cursor.execute("SELECT username FROM Power_Users WHERE team_id = ?", (self.status))
-                result = cursor.fetchone()[0].strip()
-                self.Logged_in_as_Label.setText(result)
+                self.cur_uname = cursor.fetchone()[0].strip()
+                self.Logged_in_as_Label.setText(self.cur_uname)
                 self.Pending_Matches_Remove_Match_Button.hide()
                 self.Pending_Matches_Add_Match_Button.hide()
                 self.Pending_Matches_Respond_Button.show()
@@ -133,7 +141,8 @@ class UI(QMainWindow):
             self.Menu_Buttons[-3].hide()
             self.Log_Out_Button.hide()
             self.Log_In_Button.show()
-            self.Logged_in_as_Label.setText("GUEST")
+            self.cur_uname = "Guest"
+            self.Logged_in_as_Label.setText(self.cur_uname)
 
     def populate_teams_table(self):
         connection = pyodbc.connect(connection_string)
@@ -225,14 +234,24 @@ class UI(QMainWindow):
         if dlg.exec():
             self.populate_players_table()
 
+    def add_pending_match(self):
+        dlg = AddMatchDialog(self.connection_string)
+        dlg.exec()
 
+# Rohaan's credentials
+# server = 'desktop-f0ere45'
+# database = "ICC_Cricket_Management"
+# windows_authentication = True 
+# username = "sa"
+# password = "password123"
+# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
-server = 'desktop-f0ere45'
+# Musab's credentials
+server = "LAPTOP-D5M397KF\DBMS_LAB6"
 database = "ICC_Cricket_Management"
-windows_authentication = True 
 username = "sa"
 password = "password123"
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
 
 # if windows_authentication:
