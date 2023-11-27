@@ -99,7 +99,7 @@ class AddMatchDialog(QDialog):
             cursor.execute("SELECT T.team_id FROM Teams T INNER JOIN Countries C ON C.country_code = T.country_code WHERE C.country_name = ? AND T.category = ? AND T.format = ?", (tournament_t2, tournament_category, tournament_format))
             t2_id = cursor.fetchone()[0]
             print(t1_id, t2_id)
-            
+
             cursor.execute("INSERT INTO Matches (date_time, venue, team_1_id, team_2_id) VALUES (?, ?, ?, ?)", (date_time, venue, t1_id, t2_id))
             cursor.commit()
 
@@ -282,13 +282,13 @@ class AddTournamentDialog(QDialog):
         connection.close()
         self.accept()
 
-server = "LAPTOP-D5M397KF\DBMS_LAB6"
-database = "ICC_Cricket_Management"
-username = "sa"
-password = "password123"
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
+# server = "LAPTOP-D5M397KF\DBMS_LAB6"
+# database = "ICC_Cricket_Management"
+# username = "sa"
+# password = "password123"
+# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
-app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
-window = AddMatchDialog(connection_string) # Create an instance of our window
-window.show()
-app.exec() # Start the application
+# app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
+# window = AddMatchDialog(connection_string) # Create an instance of our window
+# window.show()
+# app.exec() # Start the application

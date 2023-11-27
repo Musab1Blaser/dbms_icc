@@ -84,6 +84,7 @@ class UI(QMainWindow):
         self.populate_teams_table()
         self.populate_players_table()
         self.populate_matches_table()
+        self.populate_pending_matches_table()
 
         # connect log in and log out buttons to their respective dialogs
         self.Log_In_Button.clicked.connect(self.login_attempt)
@@ -196,33 +197,53 @@ class UI(QMainWindow):
         connection.close()
         
     def populate_matches_table(self):
+        pass
+        # connection = pyodbc.connect(connection_string)
+        # cursor = connection.cursor()
+
+        # cursor.execute("select format, match_date, match_time, venue, team1_id, team2_id from Matches where match_id in (select match_id from Match_Results)")
+
+        # self.Match_History_Table.setRowCount(0)
+
+        # result = cursor.fetchall()
+
+        # # Fetch all rows and populate the table
+        # for row_index, row_data in enumerate(result):
+        #     self.Match_History_Table.insertRow(row_index)
+        #     # offset = 0
+        #     # country = ""
+        #     for col_index, cell_data in enumerate(row_data):
+        #         # if (col_index == 2):
+        #         #     cell_data = str(cell_data)
+        #         #     tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
+        #         #     cell_data = tmp.fetchone()[0]
+
+        #         item = QTableWidgetItem(str(cell_data))
+        #         self.Match_History_Table.setItem(row_index, col_index, item)
+
+        # # Close the database connection
+        # connection.close()
+        
+    def populate_pending_matches_table(self):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select format, match_date, match_time, venue, team1_id, team2_id from Matches where match_id in (select match_id from Match_Results)")
+        cursor.execute("select * from Matches")
 
-        self.Match_History_Table.setRowCount(0)
+        self.Pending_Matches_Table.setRowCount(0)
 
         result = cursor.fetchall()
+        # print(result)
 
         # Fetch all rows and populate the table
         for row_index, row_data in enumerate(result):
-            self.Match_History_Table.insertRow(row_index)
-            # offset = 0
-            # country = ""
+            self.Pending_Matches_Table.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
-                # if (col_index == 2):
-                #     cell_data = str(cell_data)
-                #     tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
-                #     cell_data = tmp.fetchone()[0]
-
                 item = QTableWidgetItem(str(cell_data))
-                self.Match_History_Table.setItem(row_index, col_index, item)
+                self.Pending_Matches_Table.setItem(row_index, col_index, item)
 
         # Close the database connection
         connection.close()
-        
-
 
     def add_team(self):
         dlg = AddTeamDialog(self.connection_string)
@@ -236,7 +257,8 @@ class UI(QMainWindow):
 
     def add_pending_match(self):
         dlg = AddMatchDialog(self.connection_string)
-        dlg.exec()
+        if dlg.exec():
+            self.populate_pending_matches_table()
 
 # Rohaan's credentials
 # server = 'desktop-f0ere45'
