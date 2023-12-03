@@ -24,13 +24,24 @@ class LogInDialog(QDialog):
         self.connection_string = connection_string
         self.status = 0
         self.username = ""
+        
+        self.populate_uname()
         self.Error_Label.hide()
         self.Login_Button.clicked.connect(self.validate)
+
+    def populate_uname(self):
+        connection = pyodbc.connect(self.connection_string)
+        cursor = connection.cursor()
+        cursor.execute("SELECT username FROM Power_Users")
+        self.Username_ComboBox.clear()
+        for res in cursor.fetchall():
+            self.Username_ComboBox.addItem(res[0])
+
 
     def validate(self):
         connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
-        uname = self.Username_Entry.text()
+        uname = self.Username_ComboBox.currentText()
         pwd = self.Password_Entry.text()
         enc_pwd = hashlib.sha256(pwd.encode("utf-8")).hexdigest()
  
@@ -49,7 +60,7 @@ class LogInDialog(QDialog):
         else:
             # invalid details
             self.Error_Label.show()
-            self.Username_Entry.setText("")
+            # self.Username_Entry.setText("")
             self.Password_Entry.setText("")        
 
 class UI(QMainWindow):
