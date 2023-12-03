@@ -36,18 +36,14 @@ CREATE TABLE Plays_For (
     team_id INT REFERENCES Teams(team_id)
 );
 
-
 -- Create Matches table
 CREATE TABLE Matches (
   match_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-  format VARCHAR(255),
-  match_date Date,
-  match_time TIME,
+  date_time datetime,
   venue VARCHAR(255),
-  team1_id INT NOT NULL FOREIGN KEY REFERENCES Teams(team_id),
-  team2_id INT NOT NULL FOREIGN KEY REFERENCES Teams(team_id),
+  team_1_id INT NOT NULL FOREIGN KEY REFERENCES Teams(team_id),
+  team_2_id INT NOT NULL FOREIGN KEY REFERENCES Teams(team_id),
   completed BIT,
-  confirmed BIT,
   team_1_confirmation BIT,
   team_2_confirmation BIT
 );
@@ -66,6 +62,35 @@ CREATE TABLE Match_Results (
   ball_runs INT,
   ball_economy DECIMAL(4,2)
 );
+
+-- Creates Tournaments table
+CREATE TABLE Tournaments (
+    tournament_name VARCHAR(255) PRIMARY KEY,
+    category NVARCHAR(255),
+    format NVARCHAR(255)
+);
+
+-- Creates Tournament_Matches table
+CREATE TABLE Tournament_Matches (
+    match_id INTEGER PRIMARY KEY FOREIGN KEY REFERENCES Matches(match_id),
+    tournament_name VARCHAR(255) FOREIGN KEY REFERENCES Tournaments(tournament_name),
+    tournament_stage VARCHAR(255)
+);
+
+-- Creates Series table
+CREATE TABLE Series (
+    series_name VARCHAR(255) PRIMARY KEY,
+    team_1_id INTEGER FOREIGN KEY REFERENCES Teams(team_id),
+    team_2_id INTEGER FOREIGN KEY REFERENCES Teams(team_id),
+    total_matches INTEGER
+);
+
+-- Creates Series_Matches table
+CREATE TABLE Series_Matches (
+    match_id INTEGER PRIMARY KEY FOREIGN KEY REFERENCES Matches(match_id),
+    series_name VARCHAR(255) FOREIGN KEY REFERENCES Series(series_name)
+);
+
 
 
 -- Initialise ICC Manager Credentials --
