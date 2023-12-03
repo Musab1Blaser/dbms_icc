@@ -80,6 +80,41 @@ class UI(QMainWindow):
         self.Menu_Buttons[3].clicked.connect(lambda: self.Menu_Pages_Widget.setCurrentIndex(3))
         self.Menu_Buttons[4].clicked.connect(lambda: self.Menu_Pages_Widget.setCurrentIndex(4))
 
+        # connect filter buttons in Teams
+        self.normal_style = """/* Normal state */
+            QPushButton {
+                background-color: #fff; /* Default background color */
+            }
+
+            /* Hover state */
+            QPushButton:hover {
+                background-color: #ddf; /* Background color when hovered */
+            }
+            """
+        
+        self.highlighted_style = """/* Normal state */
+            QPushButton {
+                background-color: #aaf; /* Default background color */
+            }
+
+            /* Hover state */
+            QPushButton:hover {
+                background-color: #aaf; /* Background color when hovered */
+            }
+            """
+
+        self.teams_table_cat = "Mens"
+        self.teams_table_format = "T20I"
+        
+        self.teams_cat_highlight(self.Teams_Category_Mens_Button)
+        self.Teams_Category_Mens_Button.clicked.connect(lambda: self.teams_cat_highlight(self.Teams_Category_Mens_Button))
+        self.Teams_Category_Womens_Button.clicked.connect(lambda: self.teams_cat_highlight(self.Teams_Category_Womens_Button))
+
+        self.teams_format_highlight(self.Teams_Format_T20I_Button)
+        self.Teams_Format_T20I_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_T20I_Button))
+        self.Teams_Format_ODI_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_ODI_Button))
+        self.Teams_Format_Test_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_Test_Button))
+
         # Update tables
         self.populate_teams_table()
         self.populate_players_table()
@@ -89,6 +124,7 @@ class UI(QMainWindow):
         # connect log in and log out buttons to their respective dialogs
         self.Log_In_Button.clicked.connect(self.login_attempt)
         self.Log_Out_Button.clicked.connect(self.logout_attempt)
+
 
         # connect add team button
         self.Add_Team_Button.clicked.connect(self.add_team)
@@ -149,7 +185,7 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select * from Teams")
+        cursor.execute("select * from Teams WHERE category = ? AND format = ?", (self.teams_table_cat, self.teams_table_format))
 
         self.Teams_Ranking_Table.setRowCount(0)
 
@@ -236,6 +272,21 @@ class UI(QMainWindow):
 
         # Close the database connection
         connection.close()
+
+    def teams_cat_highlight(self, button):
+        self.Teams_Category_Mens_Button.setStyleSheet(self.normal_style)
+        self.Teams_Category_Womens_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.teams_table_cat = button.text()
+        self.populate_teams_table()
+
+    def teams_format_highlight(self, button):
+        self.Teams_Format_T20I_Button.setStyleSheet(self.normal_style)
+        self.Teams_Format_ODI_Button.setStyleSheet(self.normal_style)
+        self.Teams_Format_Test_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.teams_table_format = button.text()
+        self.populate_teams_table()
 
     def add_team(self):
         dlg = AddTeamDialog(self.connection_string)
