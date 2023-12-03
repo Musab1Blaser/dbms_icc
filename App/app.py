@@ -8,7 +8,7 @@ import sys
 
 from Add_Team_Functionality import AddTeamDialog
 from Add_Player_Functionality import AddPlayerDialog
-from Add_Match_Functionality import AddMatchDialog, RemoveMatchDialog
+from Add_Match_Functionality import AddMatchDialog, RemoveMatchDialog, RespondMatchDialog
 
 class LogOutDialog(QDialog):
     def __init__(self):
@@ -139,6 +139,8 @@ class UI(QMainWindow):
         # Pending Matches
         self.Pending_Matches_Add_Match_Button.clicked.connect(self.add_pending_match)
         self.Pending_Matches_Remove_Match_Button.clicked.connect(self.remove_pending_match)
+        self.Pending_Matches_Respond_Button.clicked.connect(self.respond_pending_match)
+
 
     def login_attempt(self): # manages the change in option visibility between users
         dlg = LogInDialog(connection_string)
@@ -148,31 +150,40 @@ class UI(QMainWindow):
                 print("Logged in as ICC Manager")
                 self.cur_uname = "ICC_Manager"
                 self.Logged_in_as_Label.setText(self.cur_uname)
+
                 self.Pending_Matches_Remove_Match_Button.show()
                 self.Pending_Matches_Add_Match_Button.show()
                 self.Pending_Matches_Respond_Button.hide()
+
                 self.Menu_Buttons[-3].show()
                 self.Menu_Buttons[-2].show()
                 self.Menu_Buttons[-1].hide()
+
                 self.Log_In_Button.hide()
                 self.Log_Out_Button.show()
             else:
                 self.status = dlg.status
                 print("Logged in as Country Manager")
+
                 connection = pyodbc.connect(self.connection_string)
                 cursor = connection.cursor()
                 cursor.execute("SELECT username FROM Power_Users WHERE team_id = ?", (self.status))
                 self.cur_uname = cursor.fetchone()[0].strip()
                 self.Logged_in_as_Label.setText(self.cur_uname)
+
                 self.Pending_Matches_Remove_Match_Button.hide()
                 self.Pending_Matches_Add_Match_Button.hide()
                 self.Pending_Matches_Respond_Button.show()
+
                 self.Menu_Buttons[-3].show()
                 self.Menu_Buttons[-2].hide()
                 self.Menu_Buttons[-1].show()
+
                 self.Log_In_Button.hide()
                 self.Log_Out_Button.show()
-
+            
+            self.populate_pending_matches_table()
+            
     def logout_attempt(self):  # manages the change in option visibility between users
         dlg = LogOutDialog()
         if dlg.exec():
@@ -262,8 +273,11 @@ class UI(QMainWindow):
         cursor = connection.cursor()
 
         # cursor.execute("select")
-
-        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, M.team_1_confirmation, M.team_2_confirmation from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code")
+        print("current status:", self.status)
+        if self.status == 0:
+            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code")
+        else:
+            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_id = ? OR M.team_2_id = ?", (self.status, self.status))
 
         self.Pending_Matches_Table.setRowCount(0)
 
@@ -341,6 +355,21 @@ class UI(QMainWindow):
             val_list.append(item.text())
 
         dlg = RemoveMatchDialog(self.connection_string, val_list)
+        if dlg.exec():
+            self.populate_pending_matches_table()
+
+    def respond_pending_match(self):
+        selected_row = -1
+        if not len(self.Pending_Matches_Table.selectedIndexes()):
+            return
+
+        selected_row = self.Pending_Matches_Table.currentRow()
+        val_list = []
+        for col in range(self.Pending_Matches_Table.columnCount()):
+            item = self.Pending_Matches_Table.item(selected_row, col)
+            val_list.append(item.text())
+
+        dlg = RespondMatchDialog(self.connection_string, self.status, val_list)
         if dlg.exec():
             self.populate_pending_matches_table()
 

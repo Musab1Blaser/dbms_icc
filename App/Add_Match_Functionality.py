@@ -301,7 +301,7 @@ class RemoveMatchDialog(QDialog):
 
     def remove_match(self):
         match_id = int(self.Remove_Match_Table.item(0, 0).text())
-        print(match_id)
+        # print(match_id)
 
         connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
@@ -313,6 +313,63 @@ class RemoveMatchDialog(QDialog):
 
         QtWidgets.QMessageBox.information(
             self, "Match Removed", "Match has been removed successfully.")
+
+        connection.close()
+        self.accept()
+
+class RespondMatchDialog(QDialog):
+    def __init__(self, connection_string, team_id, val_list):
+        super(RespondMatchDialog, self).__init__() 
+        # Load the .ui file
+        uic.loadUi('Respond_Match_dlg.ui', self)
+
+        self.connection_string = connection_string # Locally store connection string
+        self.team_id = team_id
+        # print("team id:", self.team_id)
+
+        self.match_id = int(val_list[0])
+        # print("match id:", self.match_id)
+
+        self.get_team_num()
+        # print("team num:", self.team_num)
+
+        self.Respond_Match_Table.setRowCount(0)
+        self.Respond_Match_Table.insertRow(0)
+
+        for col, val in enumerate(val_list):
+            # print("val:",val)
+            # if (val == str(self.team_id)):
+                # self.team_num = col - 7
+            item = QTableWidgetItem(str(val))
+            self.Respond_Match_Table.setItem(0, col, item)
+
+        self.Yes_Button.clicked.connect(lambda: self.respond(1))
+        self.No_Button.clicked.connect(lambda: self.respond(0))
+        self.Cancel_Button.clicked.connect(self.close)
+
+    def get_team_num(self):
+        connection = pyodbc.connect(self.connection_string)
+        cursor = connection.cursor()
+
+        cursor.execute("SELECT match_id FROM Matches WHERE match_id = ? AND team_1_id = ?", (self.match_id, self.team_id))
+        res = cursor.fetchone()
+        if res:
+            self.team_num = 1
+        else:
+            self.team_num = 2   
+
+        connection.close()         
+
+    def respond(self, response):
+        
+        connection = pyodbc.connect(self.connection_string)
+        cursor = connection.cursor()
+
+        cursor.execute(f"UPDATE MATCHES SET team_{self.team_num}_confirmation = ? WHERE match_id = ?", (response, self.match_id))
+        cursor.commit()
+
+        QtWidgets.QMessageBox.information(
+            self, "Response Recorded", f"Match response recorded as: {'Yes' if response else 'No'}")
 
         connection.close()
         self.accept()
