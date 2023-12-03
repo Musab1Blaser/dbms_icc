@@ -278,14 +278,17 @@ class UI(QMainWindow):
                     match_id = int(row_data[0])
                     cursor.execute("SELECT series_name FROM Series_Matches WHERE match_id = ?", (match_id))
                     match_name = cursor.fetchone()
-                    print("series:", match_name)
+                    # print("series:", match_name)
 
                     if match_name is None:
                         cursor.execute("SELECT tournament_name + ' - ' + tournament_stage  FROM Tournament_Matches WHERE match_id = ?", (match_id))
                         match_name = cursor.fetchone()
-                        print("tournament:", match_name)
+                        # print("tournament:", match_name)
+                        cell_data = "Tournament - " + match_name[0]
+                    else:
+                        cell_data = "Series - " + match_name[0]
 
-                    cell_data = match_name[0]
+                    # cell_data = match_name[0]
                 item = QTableWidgetItem(str(cell_data))
                 self.Pending_Matches_Table.setItem(row_index, col_index, item)
 
