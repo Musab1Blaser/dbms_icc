@@ -318,7 +318,7 @@ QPushButton:hover {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Teams_Page">
      <widget class="QGroupBox" name="Team_Format_GroupBox">
@@ -575,7 +575,7 @@ QPushButton:hover {
         <x>120</x>
         <y>410</y>
         <width>301</width>
-        <height>151</height>
+        <height>111</height>
        </rect>
       </property>
       <property name="font">
@@ -586,36 +586,6 @@ QPushButton:hover {
       <property name="title">
        <string>Search Team</string>
       </property>
-      <widget class="QPushButton" name="Teams_Search_Button">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>110</y>
-         <width>81</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">/* Normal state */
-QPushButton {
-    background-color: #fff; /* Default background color */
-}
-
-/* Hover state */
-QPushButton:hover {
-    background-color: #ddf; /* Background color when hovered */
-}
-</string>
-       </property>
-       <property name="text">
-        <string>Search</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="Teams_Search_Country_Label">
        <property name="geometry">
         <rect>
@@ -2224,7 +2194,7 @@ QPushButton:hover {
      <x>0</x>
      <y>0</y>
      <width>808</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <property name="nativeMenuBar">

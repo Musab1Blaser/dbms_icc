@@ -105,7 +105,8 @@ class UI(QMainWindow):
 
         self.teams_table_cat = "Mens"
         self.teams_table_format = "T20I"
-        
+        self.teams_table_country = "%%"
+
         self.teams_cat_highlight(self.Teams_Category_Mens_Button)
         self.Teams_Category_Mens_Button.clicked.connect(lambda: self.teams_cat_highlight(self.Teams_Category_Mens_Button))
         self.Teams_Category_Womens_Button.clicked.connect(lambda: self.teams_cat_highlight(self.Teams_Category_Womens_Button))
@@ -114,6 +115,9 @@ class UI(QMainWindow):
         self.Teams_Format_T20I_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_T20I_Button))
         self.Teams_Format_ODI_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_ODI_Button))
         self.Teams_Format_Test_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_Test_Button))
+
+        # connect search in Teams
+        self.Teams_Search_Country_Entry.textChanged.connect(self.teams_country_change)
 
         # Update tables
         self.populate_teams_table()
@@ -185,7 +189,7 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select * from Teams WHERE category = ? AND format = ?", (self.teams_table_cat, self.teams_table_format))
+        cursor.execute("select T.team_id, C.country_name, T.category, T.format from Teams T INNER JOIN Countries C ON T.country_code = C.country_code WHERE T.category = ? AND T.format = ? AND LOWER(C.country_name) like ?", (self.teams_table_cat, self.teams_table_format, self.teams_table_country))
 
         self.Teams_Ranking_Table.setRowCount(0)
 
@@ -195,10 +199,10 @@ class UI(QMainWindow):
         for row_index, row_data in enumerate(result):
             self.Teams_Ranking_Table.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
-                if (col_index == 1):
-                    cell_data = str(cell_data)
-                    tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
-                    cell_data = tmp.fetchone()[0]
+                # if (col_index == 1):
+                    # cell_data = str(cell_data)
+                    # tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
+                    # cell_data = tmp.fetchone()[0]
                 item = QTableWidgetItem(str(cell_data))
                 self.Teams_Ranking_Table.setItem(row_index, col_index, item)
 
@@ -286,6 +290,10 @@ class UI(QMainWindow):
         self.Teams_Format_Test_Button.setStyleSheet(self.normal_style)
         button.setStyleSheet(self.highlighted_style)
         self.teams_table_format = button.text()
+        self.populate_teams_table()
+
+    def teams_country_change(self):
+        self.teams_table_country = "%" + (self.Teams_Search_Country_Entry.text()).lower() + "%"
         self.populate_teams_table()
 
     def add_team(self):
