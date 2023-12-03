@@ -282,6 +282,42 @@ class AddTournamentDialog(QDialog):
         connection.close()
         self.accept()
 
+class RemoveMatchDialog(QDialog):
+    def __init__(self, connection_string, value_list):
+        super(RemoveMatchDialog, self).__init__() 
+        # Load the .ui file
+        uic.loadUi('Remove_Match_dlg.ui', self)
+
+        self.connection_string = connection_string # Locally store connection string
+
+        self.Remove_Match_Table.setRowCount(0)
+        self.Remove_Match_Table.insertRow(0)
+        for col, val in enumerate(value_list):
+            item = QTableWidgetItem(str(val))
+            self.Remove_Match_Table.setItem(0, col, item)
+
+        self.Remove_Match_Button.clicked.connect(self.remove_match)
+        self.Cancel_Button.clicked.connect(self.close)
+
+    def remove_match(self):
+        match_id = int(self.Remove_Match_Table.item(0, 0).text())
+        print(match_id)
+
+        connection = pyodbc.connect(self.connection_string)
+        cursor = connection.cursor()
+
+        cursor.execute("DELETE FROM Series_Matches WHERE match_id = ?", (match_id))
+        cursor.execute("DELETE FROM Tournament_Matches WHERE match_id = ?", (match_id))
+        cursor.execute("DELETE FROM Matches WHERE match_id = ?", (match_id))
+        cursor.commit()
+
+        QtWidgets.QMessageBox.information(
+            self, "Match Removed", "Match has been removed successfully.")
+
+        connection.close()
+        self.accept()
+
+
 # server = "LAPTOP-D5M397KF\DBMS_LAB6"
 # database = "ICC_Cricket_Management"
 # username = "sa"
@@ -289,6 +325,6 @@ class AddTournamentDialog(QDialog):
 # connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
 # app = QtWidgets.QApplication(sys.argv) # Create an instance of QtWidgets.QApplication
-# window = AddMatchDialog(connection_string) # Create an instance of our window
+# window = RemoveMatchDialog(connection_string, ["7", "test"]) # Create an instance of our window
 # window.show()
 # app.exec() # Start the application

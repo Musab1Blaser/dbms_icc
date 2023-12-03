@@ -8,7 +8,7 @@ import sys
 
 from Add_Team_Functionality import AddTeamDialog
 from Add_Player_Functionality import AddPlayerDialog
-from Add_Match_Functionality import AddMatchDialog
+from Add_Match_Functionality import AddMatchDialog, RemoveMatchDialog
 
 class LogOutDialog(QDialog):
     def __init__(self):
@@ -138,6 +138,7 @@ class UI(QMainWindow):
 
         # Pending Matches
         self.Pending_Matches_Add_Match_Button.clicked.connect(self.add_pending_match)
+        self.Pending_Matches_Remove_Match_Button.clicked.connect(self.remove_pending_match)
 
     def login_attempt(self): # manages the change in option visibility between users
         dlg = LogInDialog(connection_string)
@@ -260,7 +261,9 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select * from Matches")
+        # cursor.execute("select")
+
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, M.team_1_confirmation, M.team_2_confirmation from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code")
 
         self.Pending_Matches_Table.setRowCount(0)
 
@@ -271,6 +274,18 @@ class UI(QMainWindow):
         for row_index, row_data in enumerate(result):
             self.Pending_Matches_Table.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
+                if col_index == 1:
+                    match_id = int(row_data[0])
+                    cursor.execute("SELECT series_name FROM Series_Matches WHERE match_id = ?", (match_id))
+                    match_name = cursor.fetchone()
+                    print("series:", match_name)
+
+                    if match_name is None:
+                        cursor.execute("SELECT tournament_name + ' - ' + tournament_stage  FROM Tournament_Matches WHERE match_id = ?", (match_id))
+                        match_name = cursor.fetchone()
+                        print("tournament:", match_name)
+
+                    cell_data = match_name[0]
                 item = QTableWidgetItem(str(cell_data))
                 self.Pending_Matches_Table.setItem(row_index, col_index, item)
 
@@ -308,6 +323,21 @@ class UI(QMainWindow):
 
     def add_pending_match(self):
         dlg = AddMatchDialog(self.connection_string)
+        if dlg.exec():
+            self.populate_pending_matches_table()
+
+    def remove_pending_match(self):
+        selected_row = -1
+        if not len(self.Pending_Matches_Table.selectedIndexes()):
+            return
+
+        selected_row = self.Pending_Matches_Table.currentRow()
+        val_list = []
+        for col in range(self.Pending_Matches_Table.columnCount()):
+            item = self.Pending_Matches_Table.item(selected_row, col)
+            val_list.append(item.text())
+
+        dlg = RemoveMatchDialog(self.connection_string, val_list)
         if dlg.exec():
             self.populate_pending_matches_table()
 
