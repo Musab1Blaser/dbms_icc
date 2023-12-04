@@ -9,6 +9,7 @@ import sys
 from Add_Team_Functionality import AddTeamDialog
 from Add_Player_Functionality import AddPlayerDialog
 from Add_Match_Functionality import AddMatchDialog, RemoveMatchDialog, RespondMatchDialog
+from Filter_Matches_functionality import FilterMatchDialog
 
 class LogOutDialog(QDialog):
     def __init__(self):
@@ -263,27 +264,28 @@ class UI(QMainWindow):
         connection.close()
         
     def populate_matches_table(self):
-        connection = pyodbc.connect(connection_string)
-        cursor = connection.cursor()
+        pass
+        # connection = pyodbc.connect(connection_string)
+        # cursor = connection.cursor()
 
-        cursor.execute("""select format, match_date, match_time, venue, 
-                       (select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team1_id=team_id), 
-                       (select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team2_id=team_id) from Matches
-                       where match_id in (select match_id from Match_Results)""")
+        # cursor.execute("""select format, match_date, match_time, venue, 
+        #                (select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team1_id=team_id), 
+        #                (select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team2_id=team_id) from Matches
+        #                where match_id in (select match_id from Match_Results)""")
 
-        self.Match_History_Table.setRowCount(0)
+        # self.Match_History_Table.setRowCount(0)
 
-        result = cursor.fetchall()
+        # result = cursor.fetchall()
         
-        # Fetch all rows and populate the table
-        for row_index, row_data in enumerate(result):
-            self.Match_History_Table.insertRow(row_index)
-            for col_index, cell_data in enumerate(row_data):
-                item = QTableWidgetItem(str(cell_data))
-                self.Match_History_Table.setItem(row_index, col_index, item)
+        # # Fetch all rows and populate the table
+        # for row_index, row_data in enumerate(result):
+        #     self.Match_History_Table.insertRow(row_index)
+        #     for col_index, cell_data in enumerate(row_data):
+        #         item = QTableWidgetItem(str(cell_data))
+        #         self.Match_History_Table.setItem(row_index, col_index, item)
 
-        # Close the database connection
-        connection.close()
+        # # Close the database connection
+        # connection.close()
         
     def populate_pending_matches_table(self):
         connection = pyodbc.connect(connection_string)
@@ -433,19 +435,19 @@ class UI(QMainWindow):
             self.populate_pending_matches_table()
 
 # Rohaan's credentials
-# server = 'desktop-f0ere45'
-# database = "ICC_Cricket_Management"
-# windows_authentication = True 
-# username = "sa"
-# password = "password123"
-# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
-
-# Musab's credentials
-server = "LAPTOP-D5M397KF\DBMS_LAB6"
+server = 'desktop-f0ere45'
 database = "ICC_Cricket_Management"
+windows_authentication = True 
 username = "sa"
 password = "password123"
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
+connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+
+# Musab's credentials
+# server = "LAPTOP-D5M397KF\DBMS_LAB6"
+# database = "ICC_Cricket_Management"
+# username = "sa"
+# password = "password123"
+# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
 
 # if windows_authentication:

@@ -318,7 +318,7 @@ QPushButton:hover {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Teams_Page">
      <widget class="QGroupBox" name="Team_Format_GroupBox">
@@ -1366,7 +1366,7 @@ QPushButton:hover {
        <string>Womens</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Players_Category_Mens_Button_6">
+     <widget class="QPushButton" name="Filter_Match_Button">
       <property name="geometry">
        <rect>
         <x>370</x>
