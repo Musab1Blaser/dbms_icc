@@ -318,7 +318,7 @@ QPushButton:hover {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Teams_Page">
      <widget class="QGroupBox" name="Team_Format_GroupBox">
@@ -437,6 +437,9 @@ QPushButton:hover {
         <width>391</width>
         <height>231</height>
        </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <row>
        <property name="text">
@@ -967,6 +970,9 @@ QPushButton:hover {
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
       <column>
        <property name="text">
         <string>Player ID</string>
@@ -1157,46 +1163,6 @@ QPushButton:hover {
       <property name="text">
        <string>Match History</string>
       </property>
-     </widget>
-     <widget class="QTableWidget" name="Match_History_Table">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>161</y>
-        <width>541</width>
-        <height>381</height>
-       </rect>
-      </property>
-      <column>
-       <property name="text">
-        <string>Format</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Date</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Time</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Venue</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Team 1</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Team 2</string>
-       </property>
-      </column>
      </widget>
      <widget class="QGroupBox" name="Players_Format_GroupBox_3">
       <property name="geometry">
@@ -1426,6 +1392,117 @@ QPushButton:hover {
        <string> Match Details</string>
       </property>
      </widget>
+     <widget class="QTableWidget" name="Match_History_Table">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>160</y>
+        <width>571</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Match ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Match Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Venue</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Time</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Category</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Format</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 2</string>
+       </property>
+      </column>
+      <item row="0" column="2">
+       <property name="text">
+        <string>Asia Cup</string>
+       </property>
+      </item>
+      <item row="0" column="3">
+       <property name="text">
+        <string>20/10/24</string>
+       </property>
+      </item>
+      <item row="0" column="7">
+       <property name="text">
+        <string>Bangladesh</string>
+       </property>
+      </item>
+      <item row="0" column="8">
+       <property name="text">
+        <string>India</string>
+       </property>
+      </item>
+      <item row="1" column="2">
+       <property name="text">
+        <string>AUS vs SA, 2023</string>
+       </property>
+      </item>
+      <item row="1" column="3">
+       <property name="text">
+        <string>16/5/23</string>
+       </property>
+      </item>
+      <item row="1" column="7">
+       <property name="text">
+        <string>Australia</string>
+       </property>
+      </item>
+      <item row="1" column="8">
+       <property name="text">
+        <string>South Africa</string>
+       </property>
+      </item>
+     </widget>
     </widget>
     <widget class="QWidget" name="Scheduled_Fixtures_Page">
      <widget class="QLabel" name="Scheduled_Fixtures_Page_Label">
@@ -1447,61 +1524,6 @@ QPushButton:hover {
       <property name="text">
        <string>Scheduled Fixtures</string>
       </property>
-     </widget>
-     <widget class="QTableWidget" name="scheduled_fixtures_table">
-      <property name="geometry">
-       <rect>
-        <x>50</x>
-        <y>160</y>
-        <width>541</width>
-        <height>381</height>
-       </rect>
-      </property>
-      <column>
-       <property name="text">
-        <string>Format</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>New Column</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Date</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Tournament</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Venue</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Team 1</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Team 2</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Team 1 confirmation</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Team 2 confirmation</string>
-       </property>
-      </column>
      </widget>
      <widget class="QGroupBox" name="Players_Format_GroupBox_4">
       <property name="geometry">
@@ -1701,6 +1723,147 @@ QPushButton:hover {
        <string>Filter Matches</string>
       </property>
      </widget>
+     <widget class="QTableWidget" name="Scheduled_Fixtures_Table">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>170</y>
+        <width>571</width>
+        <height>371</height>
+       </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
+      </property>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string/>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Match ID</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Match Name</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Venue</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Time</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Category</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Format</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 1</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Team 2</string>
+       </property>
+      </column>
+      <item row="0" column="2">
+       <property name="text">
+        <string>Asia Cup</string>
+       </property>
+      </item>
+      <item row="0" column="3">
+       <property name="text">
+        <string>20/10/24</string>
+       </property>
+      </item>
+      <item row="0" column="7">
+       <property name="text">
+        <string>Bangladesh</string>
+       </property>
+      </item>
+      <item row="0" column="8">
+       <property name="text">
+        <string>India</string>
+       </property>
+      </item>
+      <item row="1" column="2">
+       <property name="text">
+        <string>AUS vs SA, 2023</string>
+       </property>
+      </item>
+      <item row="1" column="3">
+       <property name="text">
+        <string>16/5/23</string>
+       </property>
+      </item>
+      <item row="1" column="7">
+       <property name="text">
+        <string>Australia</string>
+       </property>
+      </item>
+      <item row="1" column="8">
+       <property name="text">
+        <string>South Africa</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="Scheduled_Matches_Upload_Button">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>570</y>
+        <width>101</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>Upload Results</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Pending_Matches_Page">
      <widget class="QLabel" name="Pending_Matches_Page_Label">
@@ -1731,6 +1894,9 @@ QPushButton:hover {
         <width>571</width>
         <height>431</height>
        </rect>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::NoEditTriggers</set>
       </property>
       <row>
        <property name="text">

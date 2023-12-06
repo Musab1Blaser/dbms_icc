@@ -31,7 +31,7 @@ class AddPlayerDialog(QDialog):
         connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
         
-        cursor.execute("SELECT P.player_id, P.player_name, P.age, P.gender, P.role FROM Players P INNER JOIN Teams T ON P.country_code = T.country_code WHERE (CASE WHEN P.Gender = 'M' AND T.Category = 'Mens' THEN 1 WHEN P.Gender = 'F' AND T.Category = 'Womens' THEN 1 ELSE 0 END) = 1 AND T.team_id = ?", (self.team_id))
+        cursor.execute("SELECT P.player_id, P.player_name, P.age, P.gender, P.role FROM Players P INNER JOIN Teams T ON P.country_code = T.country_code WHERE (CASE WHEN P.Gender = 'M' AND T.Category = 'Mens' THEN 1 WHEN P.Gender = 'F' AND T.Category = 'Womens' THEN 1 ELSE 0 END) = 1 AND T.team_id = ? AND P.player_id NOT IN (SELECT player_id FROM Plays_FOR WHERE team_id = ?)", (self.team_id, self.team_id))
 
         self.Player_Table.setRowCount(0)
 

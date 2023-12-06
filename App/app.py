@@ -208,6 +208,7 @@ class UI(QMainWindow):
 
         # Pending Matches
         self.Pending_Matches_Add_Match_Button.clicked.connect(self.add_pending_match)
+        self.Pending_Matches_Respond_Button.clicked.connect(self.respond_pending_match)
 
     def login_attempt(self): # manages the change in option visibility between users
         dlg = LogInDialog(connection_string)
@@ -292,11 +293,12 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select P.player_ID, P.player_name, C.country_name, P.age, P.gender, P.role from Players P INNER JOIN Countries C ON P.country_code=C.country_code INNER JOIN Plays_For F ON P.player_id=F.player_id INNER JOIN Teams T ON F.team_id=T.team_id WHERE T.category = ? AND T.format = ? AND P.role= ? AND LOWER(C.country_name) like ?", (self.players_table_cat, self.players_table_format,self.players_table_role,self.players_table_country))
+        cursor.execute("select distinct P.player_ID, P.player_name, C.country_name, P.age, P.gender, P.role from Players P INNER JOIN Countries C ON P.country_code=C.country_code INNER JOIN Plays_For F ON P.player_id=F.player_id INNER JOIN Teams T ON F.team_id=T.team_id WHERE T.category = ? AND T.format = ? AND P.role= ? AND LOWER(P.player_name) like ? AND LOWER(C.country_name) like ?", (self.players_table_cat, self.players_table_format,self.players_table_role, self.player_table_name, self.players_table_country))
         # cursor.execute("select * from players")
         self.Players_Ranking_Table.setRowCount(0)
 
         result = cursor.fetchall()
+        print("players found: ", len(result))
 
         # Fetch all rows and populate the table
         for row_index, row_data in enumerate(result):
@@ -319,53 +321,71 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("""select (select distinct format from teams where team_id=team_1_id) as Format,
-(select tournament_name from Tournament_Matches where Matches.match_id=Tournament_Matches.match_id) as Tournament_name,
-datepart(year, date_time) as  match_year, datepart(month, date_time) as match_month, venue, 
-(select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team_1_id=team_id) as Country1, 
-(select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team_2_id=team_id) as Country2
-from Matches where match_id in (select match_id from Match_Results)""")
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation = 1 AND M.team_2_confirmation = 1")
 
         self.Match_History_Table.setRowCount(0)
 
         result = cursor.fetchall()
-        
+        # print(result)
+
         # Fetch all rows and populate the table
         for row_index, row_data in enumerate(result):
             self.Match_History_Table.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
+                if col_index == 1:
+                    match_id = int(row_data[0])
+                    cursor.execute("SELECT series_name FROM Series_Matches WHERE match_id = ?", (match_id))
+                    match_name = cursor.fetchone()
+                    # print("series:", match_name)
+
+                    if match_name is None:
+                        cursor.execute("SELECT tournament_name + ' - ' + tournament_stage  FROM Tournament_Matches WHERE match_id = ?", (match_id))
+                        match_name = cursor.fetchone()
+                        # print("tournament:", match_name)
+                        cell_data = "Tournament - " + match_name[0]
+                    else:
+                        cell_data = "Series - " + match_name[0]
+
+                    # cell_data = match_name[0]
                 item = QTableWidgetItem(str(cell_data))
                 self.Match_History_Table.setItem(row_index, col_index, item)
-
-        # Close the database connection
-        connection.close()
 
     def populate_scheduled_fixtures_table(self):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("""select (select distinct format from teams where team_id=team_1_id) as Format,
-(select tournament_name from Tournament_Matches where Matches.match_id=Tournament_Matches.match_id) as Tournament_name,
-date_time, venue, 
-(select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team_1_id=team_id) as Country1, 
-(select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team_2_id=team_id) as Country2,
-team_1_confirmation, team_2_confirmation
-from Matches""")
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation = 1 AND M.team_2_confirmation = 1")
 
-        self.scheduled_fixtures_table.setRowCount(0)
+
+        self.Scheduled_Fixtures_Table.setRowCount(0)
 
         result = cursor.fetchall()
-        
-        
+        # print(result)
+
         # Fetch all rows and populate the table
         for row_index, row_data in enumerate(result):
-            self.Match_History_Table.insertRow(row_index)
+            self.Scheduled_Fixtures_Table.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
+                if col_index == 1:
+                    match_id = int(row_data[0])
+                    cursor.execute("SELECT series_name FROM Series_Matches WHERE match_id = ?", (match_id))
+                    match_name = cursor.fetchone()
+                    # print("series:", match_name)
+
+                    if match_name is None:
+                        cursor.execute("SELECT tournament_name + ' - ' + tournament_stage  FROM Tournament_Matches WHERE match_id = ?", (match_id))
+                        match_name = cursor.fetchone()
+                        # print("tournament:", match_name)
+                        cell_data = "Tournament - " + match_name[0]
+                    else:
+                        cell_data = "Series - " + match_name[0]
+
+                    # cell_data = match_name[0]
                 item = QTableWidgetItem(str(cell_data))
-                self.Match_History_Table.setItem(row_index, col_index, item)
+                self.Scheduled_Fixtures_Table.setItem(row_index, col_index, item)
 
         # Close the database connection
-        connection.close()    
+        connection.close()
         
     def populate_pending_matches_table(self):
         connection = pyodbc.connect(connection_string)
@@ -374,9 +394,9 @@ from Matches""")
         # cursor.execute("select")
         print("current status:", self.status)
         if self.status == 0:
-            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code")
+            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation is NULL OR M.team_2_confirmation is NULL OR M.team_1_confirmation = 0 OR M.team_2_confirmation = 0")
         else:
-            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_id = ? OR M.team_2_id = ?", (self.status, self.status))
+            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE (M.team_1_id = ? OR M.team_2_id = ?) AND (M.team_1_confirmation is NULL OR M.team_2_confirmation is NULL OR M.team_1_confirmation = 0 OR M.team_2_confirmation = 0)", (self.status, self.status))
 
         self.Pending_Matches_Table.setRowCount(0)
 
@@ -439,8 +459,6 @@ from Matches""")
         self.sch_table_cat = button.text()
         self.populate_scheduled_fixtures_table()
         
-
-
     def teams_format_highlight(self, button):
         self.Teams_Format_T20I_Button.setStyleSheet(self.normal_style)
         self.Teams_Format_ODI_Button.setStyleSheet(self.normal_style)
@@ -486,8 +504,6 @@ from Matches""")
         self.players_table_role = button.text()
         self.populate_players_table()    
 
-            
-
     def teams_country_change(self):
         self.teams_table_country = "%" + (self.Teams_Search_Country_Entry.text()).lower() + "%"
         self.populate_teams_table()
@@ -506,18 +522,6 @@ from Matches""")
         dlg = AddMatchDialog(self.connection_string)
         if dlg.exec():
             self.populate_pending_matches_table()
-            
-            
-    def filter_match_history(self):
-        dlg = FilterMatchDialog(self.connection_string)
-        if dlg.exec():
-            self.populate_matches_table()
-            
-            
-    def filter_match_history(self):
-        dlg = FilterMatchDialog(self.connection_string)
-        if dlg.exec():
-            self.populate_matches_table()
 
     def remove_pending_match(self):
         selected_row = -1
@@ -548,63 +552,15 @@ from Matches""")
         dlg = RespondMatchDialog(self.connection_string, self.status, val_list)
         if dlg.exec():
             self.populate_pending_matches_table()
+            print("populating scheduled fixtures")
+            self.populate_scheduled_fixtures_table()
             
             
     def filter_match_history(self):
         dlg = FilterMatchDialog(self.connection_string)
         if dlg.exec():
             self.populate_matches_table()
-
-    def remove_pending_match(self):
-        selected_row = -1
-        if not len(self.Pending_Matches_Table.selectedIndexes()):
-            return
-
-        selected_row = self.Pending_Matches_Table.currentRow()
-        val_list = []
-        for col in range(self.Pending_Matches_Table.columnCount()):
-            item = self.Pending_Matches_Table.item(selected_row, col)
-            val_list.append(item.text())
-
-        dlg = RemoveMatchDialog(self.connection_string, val_list)
-        if dlg.exec():
-            self.populate_pending_matches_table()
-
-    def respond_pending_match(self):
-        selected_row = -1
-        if not len(self.Pending_Matches_Table.selectedIndexes()):
-            return
-
-        selected_row = self.Pending_Matches_Table.currentRow()
-        val_list = []
-        for col in range(self.Pending_Matches_Table.columnCount()):
-            item = self.Pending_Matches_Table.item(selected_row, col)
-            val_list.append(item.text())
-
-        dlg = RespondMatchDialog(self.connection_string, self.status, val_list)
-        if dlg.exec():
-            self.populate_pending_matches_table()
-            
-            
-    def filter_match_history(self):
-        dlg = FilterMatchDialog(self.connection_string)
-        if dlg.exec():
-            self.populate_matches_table()
-
-    def remove_pending_match(self):
-        selected_row = -1
-        if not len(self.Pending_Matches_Table.selectedIndexes()):
-            return
-
-        selected_row = self.Pending_Matches_Table.currentRow()
-        val_list = []
-        for col in range(self.Pending_Matches_Table.columnCount()):
-            item = self.Pending_Matches_Table.item(selected_row, col)
-            val_list.append(item.text())
-
-        dlg = RemoveMatchDialog(self.connection_string, val_list)
-        if dlg.exec():
-            self.populate_pending_matches_table()
+         
 
     def search_player(self):
         self.player_table_name ="%" + (self.Players_Search_Name_Entry.text()).lower() + "%"
@@ -622,16 +578,16 @@ from Matches""")
 # connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
 # Musab's credentials
-# server = "LAPTOP-D5M397KF\DBMS_LAB6"
-# database = "ICC_Cricket_Management"
-# username = "sa"
-# password = "password123"
-# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
+server = "LAPTOP-D5M397KF\DBMS_LAB6"
+database = "ICC_Cricket_Management"
+username = "sa"
+password = "password123"
+connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
 # Hamza's credentials
-server = 'LAPTOP-2LF8R7KR'
-database = "ICC_Cricket_Management"
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+# server = 'LAPTOP-2LF8R7KR'
+# database = "ICC_Cricket_Management"
+# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
 
 # if windows_authentication:
