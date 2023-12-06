@@ -318,7 +318,7 @@ QPushButton:hover {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Teams_Page">
      <widget class="QGroupBox" name="Team_Format_GroupBox">
@@ -1045,41 +1045,11 @@ QPushButton:hover {
       <property name="title">
        <string>Role</string>
       </property>
-      <widget class="QPushButton" name="Players_Role_AllRounder_Button">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>30</y>
-         <width>111</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">/* Normal state */
-QPushButton {
-    background-color: #fff; /* Default background color */
-}
-
-/* Hover state */
-QPushButton:hover {
-    background-color: #ddf; /* Background color when hovered */
-}
-</string>
-       </property>
-       <property name="text">
-        <string>All-Rounder</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="Players_Role_Batsman_Button">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>70</y>
+         <y>30</y>
          <width>111</width>
          <height>28</height>
         </rect>
@@ -1109,7 +1079,7 @@ QPushButton:hover {
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>110</y>
+         <y>70</y>
          <width>111</width>
          <height>28</height>
         </rect>
@@ -1133,6 +1103,36 @@ QPushButton:hover {
        </property>
        <property name="text">
         <string>Bowler</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="Players_Role_AllRounder_Button">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>110</y>
+         <width>111</width>
+         <height>28</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>All-Rounder</string>
        </property>
       </widget>
      </widget>
@@ -1215,7 +1215,7 @@ QPushButton:hover {
       <property name="title">
        <string>Format</string>
       </property>
-      <widget class="QPushButton" name="Players_Format_T20I_Button_3">
+      <widget class="QPushButton" name="His_Format_T20I_Button">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -1245,7 +1245,7 @@ QPushButton:hover {
         <string>T20I</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="Players_Format_ODI_Button_3">
+      <widget class="QPushButton" name="His_Format_ODI_Button">
        <property name="geometry">
         <rect>
          <x>110</x>
@@ -1275,7 +1275,7 @@ QPushButton:hover {
         <string>ODI</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="Players_Format_Test_Button_3">
+      <widget class="QPushButton" name="His_Format_Test_Button">
        <property name="geometry">
         <rect>
          <x>200</x>
@@ -1306,7 +1306,7 @@ QPushButton:hover {
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="Players_Category_Mens_Button_5">
+     <widget class="QPushButton" name="His_Category_Mens_Button">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -1336,7 +1336,7 @@ QPushButton:hover {
        <string>Mens</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Players_Category_Mens_Button_3">
+     <widget class="QPushButton" name="His_Category_Womens_Button">
       <property name="geometry">
        <rect>
         <x>170</x>
@@ -1366,7 +1366,7 @@ QPushButton:hover {
        <string>Womens</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Players_Category_Mens_Button_6">
+     <widget class="QPushButton" name="Filter_Match_Button">
       <property name="geometry">
        <rect>
         <x>370</x>
@@ -1448,7 +1448,7 @@ QPushButton:hover {
        <string>Scheduled Fixtures</string>
       </property>
      </widget>
-     <widget class="QTableWidget" name="tableWidget_4">
+     <widget class="QTableWidget" name="scheduled_fixtures_table">
       <property name="geometry">
        <rect>
         <x>50</x>
@@ -1520,7 +1520,7 @@ QPushButton:hover {
       <property name="title">
        <string>Format</string>
       </property>
-      <widget class="QPushButton" name="Players_Format_T20I_Button_4">
+      <widget class="QPushButton" name="Sch_Format_T20I_Button">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -1550,7 +1550,7 @@ QPushButton:hover {
         <string>T20I</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="Players_Format_ODI_Button_4">
+      <widget class="QPushButton" name="Sch_Format_ODI_Button">
        <property name="geometry">
         <rect>
          <x>110</x>
@@ -1580,7 +1580,7 @@ QPushButton:hover {
         <string>ODI</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="Players_Format_Test_Button_4">
+      <widget class="QPushButton" name="Sch_Format_Test_Button">
        <property name="geometry">
         <rect>
          <x>200</x>
@@ -1611,7 +1611,7 @@ QPushButton:hover {
        </property>
       </widget>
      </widget>
-     <widget class="QPushButton" name="Players_Format_T20I_Button_5">
+     <widget class="QPushButton" name="Sch_Category_Mens_Button">
       <property name="geometry">
        <rect>
         <x>80</x>
@@ -1641,7 +1641,7 @@ QPushButton:hover {
        <string>Mens</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Players_Format_T20I_Button_6">
+     <widget class="QPushButton" name="Sch_Category_Womens_Button">
       <property name="geometry">
        <rect>
         <x>170</x>
