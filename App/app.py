@@ -119,14 +119,56 @@ class UI(QMainWindow):
         self.teams_table_format = "T20I"
         self.teams_table_country = "%%"
 
+        self.players_table_cat = "Mens"
+        self.players_table_format = "T20I"
+        self.players_table_role = "Batsman"
+        self.players_table_country = "%%"
+        self.player_table_name = '%%'
+        self.player_table_year = '%%'
+
         self.teams_cat_highlight(self.Teams_Category_Mens_Button)
         self.Teams_Category_Mens_Button.clicked.connect(lambda: self.teams_cat_highlight(self.Teams_Category_Mens_Button))
         self.Teams_Category_Womens_Button.clicked.connect(lambda: self.teams_cat_highlight(self.Teams_Category_Womens_Button))
+
+        self.players_cat_highlight(self.Players_Category_Mens_Button)
+        self.Players_Category_Mens_Button.clicked.connect(lambda: self.players_cat_highlight(self.Players_Category_Mens_Button))
+        self.Players_Category_Womens_Button.clicked.connect(lambda: self.players_cat_highlight(self.Players_Category_Womens_Button))
+
+        # function for player role highlight
+        self.players_role_highlight(self.Players_Role_Batsman_Button)
+        self.Players_Role_AllRounder_Button.clicked.connect(lambda: self.players_role_highlight(self.Players_Role_AllRounder_Button)) #function is being called here
+        self.Players_Role_Batsman_Button.clicked.connect(lambda: self.players_role_highlight(self.Players_Role_Batsman_Button)) #function is being called here
+        self.Players_Role_Bowler_Button.clicked.connect(lambda: self.players_role_highlight(self.Players_Role_Bowler_Button)) #function is being called here
+
+        self.his_cat_highlight(self.His_Category_Mens_Button)
+        self.His_Category_Mens_Button.clicked.connect(lambda: self.his_cat_highlight(self.His_Category_Mens_Button))
+        self.His_Category_Womens_Button.clicked.connect(lambda: self.his_cat_highlight(self.His_Category_Womens_Button))
+
+        self.sch_cat_highlight(self.Sch_Category_Mens_Button)
+        self.Sch_Category_Mens_Button.clicked.connect(lambda: self.sch_cat_highlight(self.Sch_Category_Mens_Button))
+        self.Sch_Category_Womens_Button.clicked.connect(lambda: self.sch_cat_highlight(self.Sch_Category_Womens_Button))
+
+
 
         self.teams_format_highlight(self.Teams_Format_T20I_Button)
         self.Teams_Format_T20I_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_T20I_Button))
         self.Teams_Format_ODI_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_ODI_Button))
         self.Teams_Format_Test_Button.clicked.connect(lambda: self.teams_format_highlight(self.Teams_Format_Test_Button))
+
+        self.players_format_highlight(self.Players_Format_T20I_Button)
+        self.Players_Format_T20I_Button.clicked.connect(lambda: self.players_format_highlight(self.Players_Format_T20I_Button))
+        self.Players_Format_ODI_Button.clicked.connect(lambda: self.players_format_highlight(self.Players_Format_ODI_Button))
+        self.Players_Format_Test_Button.clicked.connect(lambda: self.players_format_highlight(self.Players_Format_Test_Button))
+
+        self.his_format_highlight(self.His_Format_T20I_Button)
+        self.His_Format_T20I_Button.clicked.connect(lambda: self.his_format_highlight(self.His_Format_T20I_Button))
+        self.His_Format_ODI_Button.clicked.connect(lambda: self.his_format_highlight(self.His_Format_ODI_Button))
+        self.His_Format_Test_Button.clicked.connect(lambda: self.his_format_highlight(self.His_Format_Test_Button))
+
+        self.sch_format_highlight(self.Sch_Format_T20I_Button)
+        self.Sch_Format_T20I_Button.clicked.connect(lambda: self.sch_format_highlight(self.Sch_Format_T20I_Button))
+        self.Sch_Format_ODI_Button.clicked.connect(lambda: self.sch_format_highlight(self.Sch_Format_ODI_Button))
+        self.Sch_Format_Test_Button.clicked.connect(lambda: self.sch_format_highlight(self.Sch_Format_Test_Button))
 
         # connect search in Teams
         self.Teams_Search_Country_Entry.textChanged.connect(self.teams_country_change)
@@ -135,12 +177,16 @@ class UI(QMainWindow):
         self.populate_teams_table()
         self.populate_players_table()
         self.populate_matches_table()
+        self.populate_scheduled_fixtures_table()
         self.populate_pending_matches_table()
+        
+
         
 
         # connect log in and log out buttons to their respective dialogs
         self.Log_In_Button.clicked.connect(self.login_attempt)
         self.Log_Out_Button.clicked.connect(self.logout_attempt)
+        
         
 
         # connect add team button
@@ -151,11 +197,18 @@ class UI(QMainWindow):
         #connect Match History Buttons
         self.Filter_Match_Button.clicked.connect(self.filter_match_history)
         
+    
+
+        #connect Match History Buttons
+        self.Filter_Match_Button.clicked.connect(self.filter_match_history)
+        
         # connect internal buttons
+        self.Players_Search_Button.clicked.connect(self.search_player)
 
 
         # Pending Matches
         self.Pending_Matches_Add_Match_Button.clicked.connect(self.add_pending_match)
+        self.Pending_Matches_Respond_Button.clicked.connect(self.respond_pending_match)
 
     def login_attempt(self): # manages the change in option visibility between users
         dlg = LogInDialog(connection_string)
@@ -240,11 +293,12 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select * from Players")
-
+        cursor.execute("select distinct P.player_ID, P.player_name, C.country_name, P.age, P.gender, P.role from Players P INNER JOIN Countries C ON P.country_code=C.country_code INNER JOIN Plays_For F ON P.player_id=F.player_id INNER JOIN Teams T ON F.team_id=T.team_id WHERE T.category = ? AND T.format = ? AND P.role= ? AND LOWER(P.player_name) like ? AND LOWER(C.country_name) like ?", (self.players_table_cat, self.players_table_format,self.players_table_role, self.player_table_name, self.players_table_country))
+        # cursor.execute("select * from players")
         self.Players_Ranking_Table.setRowCount(0)
 
         result = cursor.fetchall()
+        print("players found: ", len(result))
 
         # Fetch all rows and populate the table
         for row_index, row_data in enumerate(result):
@@ -252,10 +306,10 @@ class UI(QMainWindow):
             offset = 0
             country = ""
             for col_index, cell_data in enumerate(row_data):
-                if (col_index == 2):
-                    cell_data = str(cell_data)
-                    tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
-                    cell_data = tmp.fetchone()[0]
+                # if (col_index == 2):
+                #     cell_data = str(cell_data)
+                #     tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
+                #     cell_data = tmp.fetchone()[0]
 
                 item = QTableWidgetItem(str(cell_data))
                 self.Players_Ranking_Table.setItem(row_index, col_index, item)
@@ -264,28 +318,74 @@ class UI(QMainWindow):
         connection.close()
         
     def populate_matches_table(self):
-        pass
-        # connection = pyodbc.connect(connection_string)
-        # cursor = connection.cursor()
+        connection = pyodbc.connect(connection_string)
+        cursor = connection.cursor()
 
-        # cursor.execute("""select format, match_date, match_time, venue, 
-        #                (select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team1_id=team_id), 
-        #                (select distinct country_name from Countries C join Teams T on T.country_code=C.country_code where Matches.team2_id=team_id) from Matches
-        #                where match_id in (select match_id from Match_Results)""")
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation = 1 AND M.team_2_confirmation = 1")
 
         # self.Match_History_Table.setRowCount(0)
 
-        # result = cursor.fetchall()
-        
-        # # Fetch all rows and populate the table
-        # for row_index, row_data in enumerate(result):
-        #     self.Match_History_Table.insertRow(row_index)
-        #     for col_index, cell_data in enumerate(row_data):
-        #         item = QTableWidgetItem(str(cell_data))
-        #         self.Match_History_Table.setItem(row_index, col_index, item)
+        result = cursor.fetchall()
+        # print(result)
 
-        # # Close the database connection
-        # connection.close()
+        # Fetch all rows and populate the table
+        for row_index, row_data in enumerate(result):
+            self.Match_History_Table.insertRow(row_index)
+            for col_index, cell_data in enumerate(row_data):
+                if col_index == 1:
+                    match_id = int(row_data[0])
+                    cursor.execute("SELECT series_name FROM Series_Matches WHERE match_id = ?", (match_id))
+                    match_name = cursor.fetchone()
+                    # print("series:", match_name)
+
+                    if match_name is None:
+                        cursor.execute("SELECT tournament_name + ' - ' + tournament_stage  FROM Tournament_Matches WHERE match_id = ?", (match_id))
+                        match_name = cursor.fetchone()
+                        # print("tournament:", match_name)
+                        cell_data = "Tournament - " + match_name[0]
+                    else:
+                        cell_data = "Series - " + match_name[0]
+
+                    # cell_data = match_name[0]
+                item = QTableWidgetItem(str(cell_data))
+                self.Match_History_Table.setItem(row_index, col_index, item)
+
+    def populate_scheduled_fixtures_table(self):
+        connection = pyodbc.connect(connection_string)
+        cursor = connection.cursor()
+
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation = 1 AND M.team_2_confirmation = 1")
+
+
+        self.Scheduled_Fixtures_Table.setRowCount(0)
+
+        result = cursor.fetchall()
+        # print(result)
+
+        # Fetch all rows and populate the table
+        for row_index, row_data in enumerate(result):
+            self.Scheduled_Fixtures_Table.insertRow(row_index)
+            for col_index, cell_data in enumerate(row_data):
+                if col_index == 1:
+                    match_id = int(row_data[0])
+                    cursor.execute("SELECT series_name FROM Series_Matches WHERE match_id = ?", (match_id))
+                    match_name = cursor.fetchone()
+                    # print("series:", match_name)
+
+                    if match_name is None:
+                        cursor.execute("SELECT tournament_name + ' - ' + tournament_stage  FROM Tournament_Matches WHERE match_id = ?", (match_id))
+                        match_name = cursor.fetchone()
+                        # print("tournament:", match_name)
+                        cell_data = "Tournament - " + match_name[0]
+                    else:
+                        cell_data = "Series - " + match_name[0]
+
+                    # cell_data = match_name[0]
+                item = QTableWidgetItem(str(cell_data))
+                self.Scheduled_Fixtures_Table.setItem(row_index, col_index, item)
+
+        # Close the database connection
+        connection.close()
         
     def populate_pending_matches_table(self):
         connection = pyodbc.connect(connection_string)
@@ -294,9 +394,9 @@ class UI(QMainWindow):
         # cursor.execute("select")
         print("current status:", self.status)
         if self.status == 0:
-            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code")
+            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation is NULL OR M.team_2_confirmation is NULL OR M.team_1_confirmation = 0 OR M.team_2_confirmation = 0")
         else:
-            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_id = ? OR M.team_2_id = ?", (self.status, self.status))
+            cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name, CASE WHEN M.team_1_confirmation = 1 THEN 'YES' WHEN M.team_1_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_1_Response, CASE WHEN M.team_2_confirmation = 1 THEN 'YES' WHEN M.team_2_confirmation = 0 THEN 'NO' ELSE 'Not Responded' END AS Team_2_Response from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE (M.team_1_id = ? OR M.team_2_id = ?) AND (M.team_1_confirmation is NULL OR M.team_2_confirmation is NULL OR M.team_1_confirmation = 0 OR M.team_2_confirmation = 0)", (self.status, self.status))
 
         self.Pending_Matches_Table.setRowCount(0)
 
@@ -335,6 +435,30 @@ class UI(QMainWindow):
         self.teams_table_cat = button.text()
         self.populate_teams_table()
 
+    # work completed
+    def players_cat_highlight(self, button):
+        self.Players_Category_Mens_Button.setStyleSheet(self.normal_style)
+        self.Players_Category_Womens_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.players_table_cat = button.text()
+        self.populate_players_table()
+
+    # work completed
+    def his_cat_highlight(self, button):
+        self.His_Category_Mens_Button.setStyleSheet(self.normal_style)
+        self.His_Category_Womens_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.his_table_cat = button.text()
+        self.populate_matches_table()
+
+    # work completed
+    def sch_cat_highlight(self, button):
+        self.Sch_Category_Mens_Button.setStyleSheet(self.normal_style)
+        self.Sch_Category_Womens_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.sch_table_cat = button.text()
+        self.populate_scheduled_fixtures_table()
+        
     def teams_format_highlight(self, button):
         self.Teams_Format_T20I_Button.setStyleSheet(self.normal_style)
         self.Teams_Format_ODI_Button.setStyleSheet(self.normal_style)
@@ -342,6 +466,43 @@ class UI(QMainWindow):
         button.setStyleSheet(self.highlighted_style)
         self.teams_table_format = button.text()
         self.populate_teams_table()
+
+
+    # work completed
+    def players_format_highlight(self, button):
+        self.Players_Format_T20I_Button.setStyleSheet(self.normal_style)
+        self.Players_Format_ODI_Button.setStyleSheet(self.normal_style)
+        self.Players_Format_Test_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.players_table_format = button.text()
+        self.populate_players_table()
+
+    # work completed
+    def his_format_highlight(self, button):
+        self.His_Format_T20I_Button.setStyleSheet(self.normal_style)
+        self.His_Format_ODI_Button.setStyleSheet(self.normal_style)
+        self.His_Format_Test_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.his_table_format = button.text()
+        self.populate_matches_table()
+
+    # work completed
+    def sch_format_highlight(self, button):
+        self.Sch_Format_T20I_Button.setStyleSheet(self.normal_style)
+        self.Sch_Format_ODI_Button.setStyleSheet(self.normal_style)
+        self.Sch_Format_Test_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.sch_table_format = button.text()
+        self.populate_scheduled_fixtures_table()
+
+    # work in progress
+    def players_role_highlight(self, button):
+        self.Players_Role_AllRounder_Button.setStyleSheet(self.normal_style)
+        self.Players_Role_Batsman_Button.setStyleSheet(self.normal_style)
+        self.Players_Role_Bowler_Button.setStyleSheet(self.normal_style)
+        button.setStyleSheet(self.highlighted_style)
+        self.players_table_role = button.text()
+        self.populate_players_table()    
 
     def teams_country_change(self):
         self.teams_table_country = "%" + (self.Teams_Search_Country_Entry.text()).lower() + "%"
@@ -361,12 +522,6 @@ class UI(QMainWindow):
         dlg = AddMatchDialog(self.connection_string)
         if dlg.exec():
             self.populate_pending_matches_table()
-            
-            
-    def filter_match_history(self):
-        dlg = FilterMatchDialog(self.connection_string)
-        if dlg.exec():
-            self.populate_matches_table()
 
     def remove_pending_match(self):
         selected_row = -1
@@ -397,42 +552,22 @@ class UI(QMainWindow):
         dlg = RespondMatchDialog(self.connection_string, self.status, val_list)
         if dlg.exec():
             self.populate_pending_matches_table()
+            print("populating scheduled fixtures")
+            self.populate_scheduled_fixtures_table()
             
             
     def filter_match_history(self):
         dlg = FilterMatchDialog(self.connection_string)
         if dlg.exec():
             self.populate_matches_table()
+         
 
-    def remove_pending_match(self):
-        selected_row = -1
-        if not len(self.Pending_Matches_Table.selectedIndexes()):
-            return
-
-        selected_row = self.Pending_Matches_Table.currentRow()
-        val_list = []
-        for col in range(self.Pending_Matches_Table.columnCount()):
-            item = self.Pending_Matches_Table.item(selected_row, col)
-            val_list.append(item.text())
-
-        dlg = RemoveMatchDialog(self.connection_string, val_list)
-        if dlg.exec():
-            self.populate_pending_matches_table()
-
-    def respond_pending_match(self):
-        selected_row = -1
-        if not len(self.Pending_Matches_Table.selectedIndexes()):
-            return
-
-        selected_row = self.Pending_Matches_Table.currentRow()
-        val_list = []
-        for col in range(self.Pending_Matches_Table.columnCount()):
-            item = self.Pending_Matches_Table.item(selected_row, col)
-            val_list.append(item.text())
-
-        dlg = RespondMatchDialog(self.connection_string, self.status, val_list)
-        if dlg.exec():
-            self.populate_pending_matches_table()
+    def search_player(self):
+        self.player_table_name ="%" + (self.Players_Search_Name_Entry.text()).lower() + "%"
+        self.players_table_country ="%" + (self.Players_Search_Country_Entry.text()).lower() + "%"
+        self.player_table_year ="%" + (self.Players_Search_Year_Entry.text()).lower() + "%"
+        
+        self.populate_players_table()
 
 # Rohaan's credentials
 server = 'desktop-f0ere45'
@@ -448,6 +583,11 @@ connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};D
 # username = "sa"
 # password = "password123"
 # connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
+
+# Hamza's credentials
+# server = 'LAPTOP-2LF8R7KR'
+# database = "ICC_Cricket_Management"
+# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
 
 # if windows_authentication:

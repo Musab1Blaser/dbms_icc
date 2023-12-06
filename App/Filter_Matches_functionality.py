@@ -13,3 +13,12 @@ class FilterMatchDialog(QDialog):
         uic.loadUi('Filter_matches.ui', self)
 
         self.connection_string = connection_string # Locally store connection string
+        
+        self.Apply_Filter_Button.clicked.connect(self.apply_filter)
+        
+        
+    def apply_filter(self):
+        cur_form = self.format_comboBox.currentText()
+        cur_team = self.team_comboBox.currentText()
+        cur_tourn = self.tournament_comboBOx.currentText()
+        cur_year = self.year_comboBox.currentText()
