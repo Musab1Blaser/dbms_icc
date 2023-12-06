@@ -11,6 +11,9 @@ IF OBJECT_ID('Tournament_Matches', 'U') IS NOT NULL
 IF OBJECT_ID('Tournaments', 'U') IS NOT NULL
     DROP TABLE Tournaments;
 
+IF OBJECT_ID('Player_Match_Stats ', 'U') IS NOT NULL
+    DROP TABLE Player_Match_Stats;
+
 IF OBJECT_ID('Match_Results', 'U') IS NOT NULL
     DROP TABLE Match_Results;
 
@@ -31,4 +34,3 @@ IF OBJECT_ID('Players', 'U') IS NOT NULL
 
 IF OBJECT_ID('Countries', 'U') IS NOT NULL
     DROP TABLE Countries;
-

@@ -50,17 +50,31 @@ CREATE TABLE Matches (
 
 --Create Match Results table
 CREATE TABLE Match_Results (
-  match_id INT NOT NULL PRIMARY KEY REFERENCES Matches(match_id),
-  roll_no INT NOT NULL FOREIGN KEY REFERENCES Plays_for(roll_no),
-  bat_runs INT,
-  bat_balls INT,
-  bat_4s INT,
-  bat_6s INT,
-  bat_strike_rate INT,
-  ball_overs DECIMAL(4,2),
-  ball_maiden INT,
-  ball_runs INT,
-  ball_economy DECIMAL(4,2)
+    match_id INT PRIMARY KEY,
+    team_1_score INT,
+    team_1_wickets INT,
+    team_1_balls INT,
+    team_2_score INT,
+    team_2_wickets INT,
+    team_2_balls INT,
+    FOREIGN KEY (match_id) REFERENCES Matches(match_id)
+);
+
+-- Create Player Match Stats
+CREATE TABLE Player_Match_Stats (
+    match_id INT,
+    roll_no INT,
+    bat_runs INT,
+    bat_balls INT,
+    bat_4s INT,
+    bat_6s INT,
+    bat_was_out BIT,
+    ball_balls_played INT,
+    ball_runs_conceded INT,
+    ball_wickets INT,
+    PRIMARY KEY (match_id, roll_no),
+    FOREIGN KEY (match_id) REFERENCES Matches(match_id),
+    FOREIGN KEY (roll_no) REFERENCES Plays_For(roll_no)
 );
 
 -- Creates Tournaments table
@@ -90,8 +104,6 @@ CREATE TABLE Series_Matches (
     match_id INTEGER PRIMARY KEY FOREIGN KEY REFERENCES Matches(match_id),
     series_name VARCHAR(255) FOREIGN KEY REFERENCES Series(series_name)
 );
-
-
 
 -- Initialise ICC Manager Credentials --
 INSERT INTO Power_Users (username, encrypted_password)
