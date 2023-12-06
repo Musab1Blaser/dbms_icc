@@ -181,14 +181,22 @@ class UI(QMainWindow):
         self.populate_pending_matches_table()
         
 
+        
+
         # connect log in and log out buttons to their respective dialogs
         self.Log_In_Button.clicked.connect(self.login_attempt)
         self.Log_Out_Button.clicked.connect(self.logout_attempt)
+        
         
 
         # connect add team button
         self.Add_Team_Button.clicked.connect(self.add_team)
         self.Add_Player_Button.clicked.connect(self.add_player)
+    
+
+        #connect Match History Buttons
+        self.Filter_Match_Button.clicked.connect(self.filter_match_history)
+        
     
 
         #connect Match History Buttons
@@ -348,6 +356,7 @@ from Matches""")
 
         result = cursor.fetchall()
         
+        
         # Fetch all rows and populate the table
         for row_index, row_data in enumerate(result):
             self.Match_History_Table.insertRow(row_index)
@@ -495,6 +504,48 @@ from Matches""")
 
     def add_pending_match(self):
         dlg = AddMatchDialog(self.connection_string)
+        if dlg.exec():
+            self.populate_pending_matches_table()
+            
+            
+    def filter_match_history(self):
+        dlg = FilterMatchDialog(self.connection_string)
+        if dlg.exec():
+            self.populate_matches_table()
+            
+            
+    def filter_match_history(self):
+        dlg = FilterMatchDialog(self.connection_string)
+        if dlg.exec():
+            self.populate_matches_table()
+
+    def remove_pending_match(self):
+        selected_row = -1
+        if not len(self.Pending_Matches_Table.selectedIndexes()):
+            return
+
+        selected_row = self.Pending_Matches_Table.currentRow()
+        val_list = []
+        for col in range(self.Pending_Matches_Table.columnCount()):
+            item = self.Pending_Matches_Table.item(selected_row, col)
+            val_list.append(item.text())
+
+        dlg = RemoveMatchDialog(self.connection_string, val_list)
+        if dlg.exec():
+            self.populate_pending_matches_table()
+
+    def respond_pending_match(self):
+        selected_row = -1
+        if not len(self.Pending_Matches_Table.selectedIndexes()):
+            return
+
+        selected_row = self.Pending_Matches_Table.currentRow()
+        val_list = []
+        for col in range(self.Pending_Matches_Table.columnCount()):
+            item = self.Pending_Matches_Table.item(selected_row, col)
+            val_list.append(item.text())
+
+        dlg = RespondMatchDialog(self.connection_string, self.status, val_list)
         if dlg.exec():
             self.populate_pending_matches_table()
             
