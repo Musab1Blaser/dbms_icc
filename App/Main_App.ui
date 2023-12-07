@@ -441,16 +441,6 @@ QPushButton:hover {
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
       <column>
        <property name="text">
         <string>Team ID</string>
@@ -466,26 +456,6 @@ QPushButton:hover {
         <string>Country Name</string>
        </property>
       </column>
-      <item row="0" column="0">
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item row="0" column="2">
-       <property name="text">
-        <string>Australia</string>
-       </property>
-      </item>
-      <item row="1" column="0">
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>Netherlands</string>
-       </property>
-      </item>
      </widget>
      <widget class="QPushButton" name="Teams_Category_Mens_Button">
       <property name="geometry">
@@ -637,7 +607,7 @@ QPushButton:hover {
        </property>
        <property name="date">
         <date>
-         <year>2023</year>
+         <year>2022</year>
          <month>1</month>
          <day>1</day>
         </date>
@@ -874,7 +844,7 @@ QPushButton:hover {
        </property>
        <property name="date">
         <date>
-         <year>2023</year>
+         <year>2022</year>
          <month>1</month>
          <day>1</day>
         </date>
@@ -977,36 +947,6 @@ QPushButton:hover {
         <string>Age</string>
        </property>
       </column>
-     </widget>
-     <widget class="QPushButton" name="Players_View_Button">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>590</y>
-        <width>131</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">/* Normal state */
-QPushButton {
-    background-color: #fff; /* Default background color */
-}
-
-/* Hover state */
-QPushButton:hover {
-    background-color: #ddf; /* Background color when hovered */
-}
-</string>
-      </property>
-      <property name="text">
-       <string>View Player</string>
-      </property>
      </widget>
      <widget class="QGroupBox" name="Players_Role_GroupBox">
       <property name="geometry">
@@ -1306,66 +1246,6 @@ QPushButton:hover {
        <string>Womens</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Filter_Match_Button">
-      <property name="geometry">
-       <rect>
-        <x>370</x>
-        <y>570</y>
-        <width>91</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">/* Normal state */
-QPushButton {
-    background-color: #fff; /* Default background color */
-}
-
-/* Hover state */
-QPushButton:hover {
-    background-color: #ddf; /* Background color when hovered */
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Filter Matches</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="Players_Category_Mens_Button_4">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>570</y>
-        <width>91</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">/* Normal state */
-QPushButton {
-    background-color: #fff; /* Default background color */
-}
-
-/* Hover state */
-QPushButton:hover {
-    background-color: #ddf; /* Background color when hovered */
-}
-</string>
-      </property>
-      <property name="text">
-       <string> Match Details</string>
-      </property>
-     </widget>
      <widget class="QTableWidget" name="Match_History_Table">
       <property name="enabled">
        <bool>true</bool>
@@ -1381,16 +1261,6 @@ QPushButton:hover {
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
       <column>
        <property name="text">
         <string>Match ID</string>
@@ -1436,46 +1306,6 @@ QPushButton:hover {
         <string>Team 2</string>
        </property>
       </column>
-      <item row="0" column="2">
-       <property name="text">
-        <string>Asia Cup</string>
-       </property>
-      </item>
-      <item row="0" column="3">
-       <property name="text">
-        <string>20/10/24</string>
-       </property>
-      </item>
-      <item row="0" column="7">
-       <property name="text">
-        <string>Bangladesh</string>
-       </property>
-      </item>
-      <item row="0" column="8">
-       <property name="text">
-        <string>India</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>AUS vs SA, 2023</string>
-       </property>
-      </item>
-      <item row="1" column="3">
-       <property name="text">
-        <string>16/5/23</string>
-       </property>
-      </item>
-      <item row="1" column="7">
-       <property name="text">
-        <string>Australia</string>
-       </property>
-      </item>
-      <item row="1" column="8">
-       <property name="text">
-        <string>South Africa</string>
-       </property>
-      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="Scheduled_Fixtures_Page">
@@ -1667,36 +1497,6 @@ QPushButton:hover {
        <string>Womens</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="Players_Format_T20I_Button_7">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>570</y>
-        <width>91</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">/* Normal state */
-QPushButton {
-    background-color: #fff; /* Default background color */
-}
-
-/* Hover state */
-QPushButton:hover {
-    background-color: #ddf; /* Background color when hovered */
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Filter Matches</string>
-      </property>
-     </widget>
      <widget class="QTableWidget" name="Scheduled_Fixtures_Table">
       <property name="enabled">
        <bool>true</bool>
@@ -1712,16 +1512,6 @@ QPushButton:hover {
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
       <column>
        <property name="text">
         <string>Match ID</string>
@@ -1767,51 +1557,11 @@ QPushButton:hover {
         <string>Team 2</string>
        </property>
       </column>
-      <item row="0" column="2">
-       <property name="text">
-        <string>Asia Cup</string>
-       </property>
-      </item>
-      <item row="0" column="3">
-       <property name="text">
-        <string>20/10/24</string>
-       </property>
-      </item>
-      <item row="0" column="7">
-       <property name="text">
-        <string>Bangladesh</string>
-       </property>
-      </item>
-      <item row="0" column="8">
-       <property name="text">
-        <string>India</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>AUS vs SA, 2023</string>
-       </property>
-      </item>
-      <item row="1" column="3">
-       <property name="text">
-        <string>16/5/23</string>
-       </property>
-      </item>
-      <item row="1" column="7">
-       <property name="text">
-        <string>Australia</string>
-       </property>
-      </item>
-      <item row="1" column="8">
-       <property name="text">
-        <string>South Africa</string>
-       </property>
-      </item>
      </widget>
      <widget class="QPushButton" name="Scheduled_Matches_Upload_Button">
       <property name="geometry">
        <rect>
-        <x>360</x>
+        <x>460</x>
         <y>570</y>
         <width>101</width>
         <height>28</height>
@@ -1872,16 +1622,6 @@ QPushButton:hover {
       <property name="editTriggers">
        <set>QAbstractItemView::NoEditTriggers</set>
       </property>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
-      <row>
-       <property name="text">
-        <string/>
-       </property>
-      </row>
       <column>
        <property name="text">
         <string>Match ID</string>
@@ -1937,101 +1677,11 @@ QPushButton:hover {
         <string>Confirmed by T2</string>
        </property>
       </column>
-      <item row="0" column="2">
-       <property name="text">
-        <string>Asia Cup</string>
-       </property>
-      </item>
-      <item row="0" column="3">
-       <property name="text">
-        <string>20/10/24</string>
-       </property>
-      </item>
-      <item row="0" column="7">
-       <property name="text">
-        <string>Bangladesh</string>
-       </property>
-      </item>
-      <item row="0" column="8">
-       <property name="text">
-        <string>India</string>
-       </property>
-      </item>
-      <item row="0" column="9">
-       <property name="text">
-        <string>Yes</string>
-       </property>
-      </item>
-      <item row="0" column="10">
-       <property name="text">
-        <string>No</string>
-       </property>
-      </item>
-      <item row="1" column="2">
-       <property name="text">
-        <string>AUS vs SA, 2023</string>
-       </property>
-      </item>
-      <item row="1" column="3">
-       <property name="text">
-        <string>16/5/23</string>
-       </property>
-      </item>
-      <item row="1" column="7">
-       <property name="text">
-        <string>Australia</string>
-       </property>
-      </item>
-      <item row="1" column="8">
-       <property name="text">
-        <string>South Africa</string>
-       </property>
-      </item>
-      <item row="1" column="9">
-       <property name="text">
-        <string>Yes</string>
-       </property>
-      </item>
-      <item row="1" column="10">
-       <property name="text">
-        <string>-</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QPushButton" name="Pending_Matches_Filter_Matches_Button">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>540</y>
-        <width>101</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">/* Normal state */
-QPushButton {
-    background-color: #fff; /* Default background color */
-}
-
-/* Hover state */
-QPushButton:hover {
-    background-color: #ddf; /* Background color when hovered */
-}
-</string>
-      </property>
-      <property name="text">
-       <string>Filter Matches</string>
-      </property>
      </widget>
      <widget class="QPushButton" name="Pending_Matches_Remove_Match_Button">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>500</x>
         <y>540</y>
         <width>101</width>
         <height>28</height>
@@ -2061,7 +1711,7 @@ QPushButton:hover {
      <widget class="QPushButton" name="Pending_Matches_Add_Match_Button">
       <property name="geometry">
        <rect>
-        <x>260</x>
+        <x>370</x>
         <y>540</y>
         <width>101</width>
         <height>28</height>
@@ -2091,7 +1741,7 @@ QPushButton:hover {
      <widget class="QPushButton" name="Pending_Matches_Respond_Button">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>500</x>
         <y>540</y>
         <width>101</width>
         <height>28</height>

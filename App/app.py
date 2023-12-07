@@ -207,7 +207,7 @@ class UI(QMainWindow):
         self.Add_Player_Button.clicked.connect(self.add_player)    
 
         #connect Match History Buttons
-        self.Filter_Match_Button.clicked.connect(self.filter_match_history)
+        # self.Filter_Match_Button.clicked.connect(self.filter_match_history)
         
         # connect internal buttons
         # self.Players_Search_Button.clicked.connect(self.search_player)
