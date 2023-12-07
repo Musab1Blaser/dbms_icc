@@ -22,3 +22,4 @@ class FilterMatchDialog(QDialog):
         cur_team = self.team_comboBox.currentText()
         cur_tourn = self.tournament_comboBOx.currentText()
         cur_year = self.year_comboBox.currentText()
+        return cur_form, cur_team, cur_tourn, cur_year

@@ -93,7 +93,19 @@ class NewPlayerDialog(QDialog):
 
     def add_player(self):
         player_name = self.Name_Entry.text()
-        player_age = int(self.Age_Entry.text())
+        
+        
+        try:
+            player_age = int(self.Age_Entry.text())
+        except ValueError:
+            # Create a QMessageBox to display the warning message
+            message_box = QtWidgets.QMessageBox()
+            message_box.setText("Invalid Age Entry")
+            # message_box.setIcon(QMessageBox::Warning)
+            message_box.exec()
+            # Clear the Age_Entry field
+            return
+        
         player_role = self.Role_ComboBox.currentText()
 
         connection = pyodbc.connect(self.connection_string)
