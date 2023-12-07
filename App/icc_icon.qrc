@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="icc">
+    <file>icc-removebg-preview-400x400.png</file>
+  </qresource>
+</RCC>

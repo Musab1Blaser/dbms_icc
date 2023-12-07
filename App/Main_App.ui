@@ -298,6 +298,19 @@ QPushButton:hover {
       <string>Guest</string>
      </property>
     </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>370</y>
+       <width>141</width>
+       <height>141</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/icc/icc-removebg-preview-400x400.png&quot; width=120/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QStackedWidget" name="Menu_Pages_Widget">
     <property name="geometry">
@@ -1849,6 +1862,8 @@ QPushButton:hover {
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="icc_icon.qrc"/>
+ </resources>
  <connections/>
 </ui>
