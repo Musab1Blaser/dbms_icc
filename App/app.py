@@ -8,6 +8,7 @@ import sys
 
 from Add_Team_Functionality import AddTeamDialog
 from Add_Player_Functionality import AddPlayerDialog
+from Add_Match_Results_Functionality import AddMatchResultsDialog
 from Add_Match_Functionality import AddMatchDialog, RemoveMatchDialog, RespondMatchDialog
 from Filter_Matches_functionality import FilterMatchDialog
 
@@ -33,8 +34,9 @@ class LogInDialog(QDialog):
     def populate_uname(self):
         connection = pyodbc.connect(self.connection_string)
         cursor = connection.cursor()
-        cursor.execute("SELECT username FROM Power_Users")
+        cursor.execute("SELECT username FROM Power_Users WHERE team_id IS NOT NULL")
         self.Username_ComboBox.clear()
+        self.Username_ComboBox.addItem("ICC_Manager")
         for res in cursor.fetchall():
             self.Username_ComboBox.addItem(res[0])
 
@@ -191,13 +193,7 @@ class UI(QMainWindow):
 
         # connect add team button
         self.Add_Team_Button.clicked.connect(self.add_team)
-        self.Add_Player_Button.clicked.connect(self.add_player)
-    
-
-        #connect Match History Buttons
-        self.Filter_Match_Button.clicked.connect(self.filter_match_history)
-        
-    
+        self.Add_Player_Button.clicked.connect(self.add_player)    
 
         #connect Match History Buttons
         self.Filter_Match_Button.clicked.connect(self.filter_match_history)
@@ -205,6 +201,9 @@ class UI(QMainWindow):
         # connect internal buttons
         self.Players_Search_Button.clicked.connect(self.search_player)
 
+        # Scheduled Fixtures
+        self.Scheduled_Matches_Upload_Button.hide()
+        self.Scheduled_Matches_Upload_Button.clicked.connect(self.upload_match_results)
 
         # Pending Matches
         self.Pending_Matches_Add_Match_Button.clicked.connect(self.add_pending_match)
@@ -218,6 +217,8 @@ class UI(QMainWindow):
                 print("Logged in as ICC Manager")
                 self.cur_uname = "ICC_Manager"
                 self.Logged_in_as_Label.setText(self.cur_uname)
+
+                self.Scheduled_Matches_Upload_Button.show()
 
                 self.Pending_Matches_Remove_Match_Button.show()
                 self.Pending_Matches_Add_Match_Button.show()
@@ -238,6 +239,8 @@ class UI(QMainWindow):
                 cursor.execute("SELECT username FROM Power_Users WHERE team_id = ?", (self.status))
                 self.cur_uname = cursor.fetchone()[0].strip()
                 self.Logged_in_as_Label.setText(self.cur_uname)
+
+                self.Scheduled_Matches_Upload_Button.hide()
 
                 self.Pending_Matches_Remove_Match_Button.hide()
                 self.Pending_Matches_Add_Match_Button.hide()
@@ -262,6 +265,7 @@ class UI(QMainWindow):
             self.Menu_Buttons[-3].hide()
             self.Log_Out_Button.hide()
             self.Log_In_Button.show()
+            self.Scheduled_Matches_Upload_Button.hide()
             self.cur_uname = "Guest"
             self.Logged_in_as_Label.setText(self.cur_uname)
 
@@ -321,7 +325,7 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation = 1 AND M.team_2_confirmation = 1")
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.completed IS NOT NULL AND M.completed = 1")
 
         self.Match_History_Table.setRowCount(0)
 
@@ -354,7 +358,7 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation = 1 AND M.team_2_confirmation = 1")
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.team_1_confirmation = 1 AND M.team_2_confirmation = 1 AND (M.completed IS NULL OR M.completed = 0)")
 
 
         self.Scheduled_Fixtures_Table.setRowCount(0)
@@ -517,6 +521,37 @@ class UI(QMainWindow):
         dlg = AddPlayerDialog(self.status, self.connection_string)
         if dlg.exec():
             self.populate_players_table()
+
+    def upload_match_results(self):
+        selected_row = -1
+        if not len(self.Scheduled_Fixtures_Table.selectedIndexes()):
+            return
+
+        selected_row = self.Scheduled_Fixtures_Table.currentRow()
+        match_id = int(self.Scheduled_Fixtures_Table.item(selected_row, 0).text())
+        cat = self.Scheduled_Fixtures_Table.item(selected_row, 5).text()
+        form = self.Scheduled_Fixtures_Table.item(selected_row, 6).text()
+        count1 = self.Scheduled_Fixtures_Table.item(selected_row, 7).text()
+        count2 = self.Scheduled_Fixtures_Table.item(selected_row, 8).text()
+
+        connection = pyodbc.connect(self.connection_string)
+        cursor = connection.cursor()
+
+        print(count1, cat, form)
+        cursor.execute("SELECT team_id FROM Teams T INNER JOIN Countries C ON T.country_code = C.country_code WHERE C.country_name = ? AND T.category = ? AND T.format = ?", (count1, cat, form))
+        t1 = int(cursor.fetchone()[0])
+
+        cursor.execute("SELECT team_id FROM Teams T INNER JOIN Countries C ON T.country_code = C.country_code WHERE C.country_name = ? AND T.category = ? AND T.format = ?", (count2, cat, form))
+        t2 = int(cursor.fetchone()[0])
+
+        connection.close()
+        
+        dlg = AddMatchResultsDialog(match_id, t1, t2, self.connection_string)
+        if dlg.exec():
+            self.populate_matches_table()
+            self.populate_pending_matches_table()
+            self.populate_players_table()
+            self.populate_teams_table()
 
     def add_pending_match(self):
         dlg = AddMatchDialog(self.connection_string)

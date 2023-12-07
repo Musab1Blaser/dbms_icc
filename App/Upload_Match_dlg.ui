@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>852</width>
+    <height>775</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Upload Match Data</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QScrollArea" name="scrollArea">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>821</width>
+     <height>571</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>570</height>
+    </size>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::VLine</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <property name="verticalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOn</enum>
+   </property>
+   <property name="widgetResizable">
+    <bool>true</bool>
+   </property>
+   <widget class="QWidget" name="scrollAreaWidgetContents">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>796</width>
+      <height>942</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_5">
+     <property name="spacing">
+      <number>20</number>
+     </property>
+     <property name="rightMargin">
+      <number>11</number>
+     </property>
+     <item>
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>450</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Team 1</string>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>115</width>
+          <height>341</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <item>
+          <widget class="QComboBox" name="Team1_Player01">
+           <item>
+            <property name="text">
+             <string>Player 1</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player02">
+           <item>
+            <property name="text">
+             <string>Player 2</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player03">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player04">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player05">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player06">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player07">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player08">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player09">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player10">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team1_Player11">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTableWidget" name="Team1_Player_Stats">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>10</y>
+          <width>526</width>
+          <height>381</height>
+         </rect>
+        </property>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>Runs Scored</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Balls Played</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>6s</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>4s</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Balls Bowled</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Wickets</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Runs Conceded</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget_4">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>30</y>
+          <width>91</width>
+          <height>341</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_4">
+         <item>
+          <widget class="QCheckBox" name="Team1_Player01_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player02_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player03_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player04_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player05_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player06_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player07_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player08_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player09_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player10_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team1_Player11_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>450</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Team 2</string>
+       </property>
+       <widget class="QWidget" name="verticalLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>30</y>
+          <width>115</width>
+          <height>341</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QComboBox" name="Team2_Player01">
+           <item>
+            <property name="text">
+             <string>Player 1</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player02">
+           <item>
+            <property name="text">
+             <string>Player 2</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player03">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player04">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player05">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player06">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player07">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player08">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player09">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player10">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="Team2_Player11">
+           <item>
+            <property name="text">
+             <string>Imran Khan</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTableWidget" name="Team2_Player_Stats">
+        <property name="geometry">
+         <rect>
+          <x>140</x>
+          <y>10</y>
+          <width>526</width>
+          <height>381</height>
+         </rect>
+        </property>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>Runs Scored</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Balls Played</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>6s</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>4s</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Balls Bowled</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Wickets</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Runs Conceded</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QWidget" name="verticalLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>680</x>
+          <y>30</y>
+          <width>91</width>
+          <height>331</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QCheckBox" name="Team2_Player01_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player02_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player03_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player04_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player05_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player06_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player07_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player08_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player09_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player10_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="Team2_Player11_Out">
+           <property name="text">
+            <string>was out</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="Match_History_Page_Label">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>50</y>
+     <width>241</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Upload Match Data</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Upload_Button">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>710</y>
+     <width>91</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Upload</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Cancel_Button">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>710</y>
+     <width>91</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="Error_Label">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>690</y>
+     <width>531</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: #f00;</string>
+   </property>
+   <property name="text">
+    <string>Error</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
