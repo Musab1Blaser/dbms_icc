@@ -294,6 +294,8 @@ class UI(QMainWindow):
         for row_index, row_data in enumerate(result):
             self.Teams_Ranking_Table.insertRow(row_index)
             for col_index, cell_data in enumerate(row_data):
+                if not row_data:
+                    row_data = 0
                 # if (col_index == 1):
                     # cell_data = str(cell_data)
                     # tmp = cursor.execute("SELECT country_name FROM Countries WHERE country_code = ?", (cell_data))
