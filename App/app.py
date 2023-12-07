@@ -341,7 +341,7 @@ class UI(QMainWindow):
 
         cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.completed IS NOT NULL AND M.completed = 1 AND T1.category = ? AND T1.format = ?", (self.his_table_cat, self.his_table_format))
 
-        self.Match_History_Table.setRowCount(0)
+        # self.Match_History_Table.setRowCount(0)
 
         result = cursor.fetchall()
         # print(result)
@@ -637,19 +637,19 @@ class UI(QMainWindow):
     #     self.populate_players_table()
 
 # Rohaan's credentials
-# server = 'desktop-f0ere45'
-# database = "ICC_Cricket_Management"
-# windows_authentication = True 
-# username = "sa"
-# password = "password123"
-# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
-
-# Musab's credentials
-server = "LAPTOP-D5M397KF\DBMS_LAB6"
+server = 'desktop-f0ere45'
 database = "ICC_Cricket_Management"
+windows_authentication = True 
 username = "sa"
 password = "password123"
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
+connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+
+# Musab's credentials
+# server = "LAPTOP-D5M397KF\DBMS_LAB6"
+# database = "ICC_Cricket_Management"
+# username = "sa"
+# password = "password123"
+# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
 # Hamza's credentials
 # server = 'LAPTOP-2LF8R7KR'
