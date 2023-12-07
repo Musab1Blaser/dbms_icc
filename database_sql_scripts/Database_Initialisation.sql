@@ -53,10 +53,10 @@ CREATE TABLE Match_Results (
     match_id INT PRIMARY KEY,
     team_1_score INT,
     team_1_wickets INT,
-    team_1_balls INT,
+    team_1_balls_played INT,
     team_2_score INT,
     team_2_wickets INT,
-    team_2_balls INT,
+    team_2_balls_played INT,
     FOREIGN KEY (match_id) REFERENCES Matches(match_id)
 );
 
@@ -69,9 +69,9 @@ CREATE TABLE Player_Match_Stats (
     bat_4s INT,
     bat_6s INT,
     bat_was_out BIT,
-    ball_balls_played INT,
-    ball_runs_conceded INT,
+    balls_bowled INT,
     ball_wickets INT,
+    ball_runs_conceded INT,
     PRIMARY KEY (match_id, roll_no),
     FOREIGN KEY (match_id) REFERENCES Matches(match_id),
     FOREIGN KEY (roll_no) REFERENCES Plays_For(roll_no)

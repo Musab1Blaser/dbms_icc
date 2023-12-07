@@ -107,7 +107,7 @@ INSERT INTO Players (player_name, country_code, age, gender, role) VALUES
     ('Tasneem Masood', 'PK', 28, 'F', 'Bowler'),
     ('Nadia Siddique', 'PK', 29, 'F', 'All-Rounder');
 
--- Pakistan Males T20I Team
+-- Pakistan Females T20I Team
 INSERT INTO Plays_For (player_id, team_id) VALUES
     (16, 4),  -- Aisha Khan in Pakistan Women T20I Team (Team 5)
     (18, 4),  -- Fatima Akhtar in Pakistan Women T20I Team (Team 5)
@@ -221,7 +221,23 @@ INSERT INTO Players (player_name, country_code, age, gender, role) VALUES
     ('Kane Richardson', 'AU', 29, 'M', 'Bowler'),
     ('Ashton Agar', 'AU', 27, 'M', 'All-Rounder');
 
--- Populate Test Team (Team 10) for Australian Male Players
+
+-- Populate ODI Team (Team 8) for Australian Male Players
+INSERT INTO Plays_For (player_id, team_id) VALUES
+    (61, 8),  -- Mitchell Johnson in Australian Men Test Team (Team 10)
+    (62, 8),  -- David Warner in Australian Men Test Team (Team 10)
+    (63, 8),  -- Steve Smith in Australian Men Test Team (Team 10)
+    (64, 8),  -- Usman Khawaja in Australian Men Test Team (Team 10)
+    (65, 8),  -- Pat Cummins in Australian Men Test Team (Team 10)
+    (66, 8),  -- Glenn Maxwell in Australian Men Test Team (Team 10)
+    (67, 8),  -- Aaron Finch in Australian Men Test Team (Team 10)
+    (68, 8),  -- Josh Hazlewood in Australian Men Test Team (Team 10)
+    (69, 8),  -- Mitchell Starc in Australian Men Test Team (Team 10)
+    (70, 8),  -- Travis Head in Australian Men Test Team (Team 10)
+    (71, 8),  -- Nathan Lyon in Australian Men Test Team (Team 10)
+    (72, 8);  -- Marcus Stoinis in Australian Men Test Team (Team 10)
+
+-- Populate Test Team (Team 9) for Australian Male Players
 INSERT INTO Plays_For (player_id, team_id) VALUES
     (61, 9),  -- Mitchell Johnson in Australian Men Test Team (Team 10)
     (62, 9),  -- David Warner in Australian Men Test Team (Team 10)
@@ -239,35 +255,35 @@ INSERT INTO Plays_For (player_id, team_id) VALUES
 -- Create 12 Matches
 INSERT INTO Matches (date_time, venue, team_1_id, team_2_id, completed, team_1_confirmation, team_2_confirmation)
 VALUES
-    ('2023-01-01 12:00:00', 'Eden Gardens, Kolkata', 3, 6, 1, 1, 1), -- PK Mens Test vs IN Mens Test - Series ~
+    ('2022-01-01 12:00:00', 'Eden Gardens, Kolkata', 3, 6, 1, 1, 1), -- PK Mens Test vs IN Mens Test - Series ~
     ('2023-01-02 13:30:00', 'Melbourne Cricket Ground, Melbourne', 4, 7, 1, 1, 1), -- PK Womens T20I vs IND Womens T20I - Series ~
-    ('2023-01-03 15:00:00', 'Wankhede Stadium, Mumbai', 5, 8, 1, 1, 1), -- IN Mens ODI vs AU Mens ODI - Tournament Qualifier *
-    ('2023-01-04 14:00:00', 'Adelaide Oval, Adelaide', 3, 6, 0, 1, 1), -- PK Mens Test vs IN Mens Test - Series ~
-    ('2023-01-05 12:30:00', 'Old Trafford, Manchester', 3, 6, 0, 1, 0), -- PK Mens Test vs IN Mens Test - Series ~
-    ('2023-01-06 16:00:00', 'Newlands, Cape Town', 2, 8, 0, 0, 1), -- PK Mens ODI vs AU Mens ODI - Tournament Qualifier *
+    ('2022-01-03 15:00:00', 'Wankhede Stadium, Mumbai', 5, 8, 0, 1, 1), -- IN Mens ODI vs AU Mens ODI - Tournament Qualifier *
+    ('2022-01-04 14:00:00', 'Adelaide Oval, Adelaide', 3, 6, 0, 1, 1), -- PK Mens Test vs IN Mens Test - Series ~
+    ('2022-01-05 12:30:00', 'Old Trafford, Manchester', 3, 6, 0, 1, 0), -- PK Mens Test vs IN Mens Test - Series ~
+    ('2022-01-06 16:00:00', 'Newlands, Cape Town', 2, 8, 0, 0, 1), -- PK Mens ODI vs AU Mens ODI - Tournament Qualifier *
     ('2023-01-07 17:30:00', 'Galle International Stadium, Galle', 4, 7, 0, 0, 0), -- PK Womens T20I vs IND Womens T20I - Series ~
     ('2023-01-08 18:00:00', 'Rawalpindi Cricket Stadium, Rawalpindi', 9, 6, 0, 1, 1), -- AU Mens Test vs IN Mens Test - Series ~
     ('2023-01-09 12:45:00', 'The Gabba, Brisbane', 9, 6, 0, 0, 1), -- AU Mens Test vs IN Mens Test - Series ~
     ('2023-01-10 14:15:00', 'R.Premadasa Stadium, Colombo', 9, 6, 0, 1, 1), -- AU Mens Test vs IN Mens Test - Series ~
-    ('2023-01-11 16:30:00', 'M.Chinnaswamy Stadium, Bengaluru', 5, 2, 0, 1, 1), -- IN Mens ODI vs PK Mens ODI - Tournament Finals *
+    ('2022-01-11 16:30:00', 'M.Chinnaswamy Stadium, Bengaluru', 5, 2, 0, 1, 1), -- IN Mens ODI vs PK Mens ODI - Tournament Finals *
 	('2023-01-12 19:00:00', 'Sydney Cricket Ground, Sydney', 10, 7, 0, 1, 1), -- ENG Womens T20I vs IN Womens T20I = Tournament Quarter Finals *
     ('2023-01-13 12:15:00', 'Sharjah Cricket Stadium, Sharjah', 10, 4, 0, 0, 0); -- ENG Womens T20I vs PK Womens T20I = Tournament Semi Finals *
 
 -- Populate Series table
 INSERT INTO Series (series_name, team_1_id, team_2_id, total_matches)
 VALUES
-    ('PK vs IN Mens Test 2023', 3, 6, 2),
-    ('PK vs IND Womens T20I 2023', 4, 7, 1),
+    ('PK vs IN Mens Test 2022', 3, 6, 5),
+    ('PK vs IN Womens T20I 2023', 4, 7, 4),
     ('AU vs IN Mens Test 2023', 9, 6, 3);
 
 -- Populate Series_Matches table
 INSERT INTO Series_Matches (match_id, series_name)
 VALUES
-    (1, 'PK vs IN Mens Test 2023'),
-    (2, 'PK vs IND Womens T20I 2023'),
-    (4, 'PK vs IN Mens Test 2023'),
-    (5, 'PK vs IN Mens Test 2023'),
-    (7, 'PK vs IND Womens T20I 2023'),
+    (1, 'PK vs IN Mens Test 2022'),
+    (2, 'PK vs IN Womens T20I 2023'),
+    (4, 'PK vs IN Mens Test 2022'),
+    (5, 'PK vs IN Mens Test 2022'),
+    (7, 'PK vs IN Womens T20I 2023'),
     (8, 'AU vs IN Mens Test 2023'),
     (9, 'AU vs IN Mens Test 2023'),
     (10, 'AU vs IN Mens Test 2023');
@@ -276,15 +292,15 @@ VALUES
 -- Populate Tournaments table
 INSERT INTO Tournaments (tournament_name, category, format)
 VALUES
-    ('Mens ODI Cup 2023', 'Mens', 'ODI'),
+    ('Mens ODI Cup 2022', 'Mens', 'ODI'),
     ('Womens T20I Cup 2023', 'Womens', 'T20I');
 
 -- Populate Tournament_Matches table
 INSERT INTO Tournament_Matches (match_id, tournament_name, tournament_stage)
 VALUES
-    (3, 'Mens ODI Cup 2023', 'Qualifier'),
-    (6, 'Mens ODI Cup 2023', 'Qualifier'),
-    (11, 'Mens ODI Cup 2023', 'Finals'),
+    (3, 'Mens ODI Cup 2022', 'Qualifier'),
+    (6, 'Mens ODI Cup 2022', 'Qualifier'),
+    (11, 'Mens ODI Cup 2022', 'Finals'),
     (12, 'Womens T20I Cup 2023', 'Quarter Finals'),
     (13, 'Womens T20I Cup 2023', 'Semi Finals');
 
