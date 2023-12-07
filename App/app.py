@@ -182,7 +182,7 @@ class UI(QMainWindow):
         self.Teams_Search_Year_Entry.dateChanged.connect(self.teams_year_change)
 
         # connect search in Players
-        self.Players_Search_Name_Entry.textChanged.connect(self.players_country_change)
+        self.Players_Search_Name_Entry.textChanged.connect(self.players_name_change)
         self.Players_Search_Year_Entry.dateChanged.connect(self.players_year_change)
         self.Players_Search_Country_Entry.textChanged.connect(self.players_country_change)
 
@@ -339,9 +339,9 @@ class UI(QMainWindow):
         connection = pyodbc.connect(connection_string)
         cursor = connection.cursor()
 
-        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.completed IS NOT NULL AND M.completed = 1 AND T1.category = ? AND T1.format = ?", (self.his_table_cat, self.his_table_format))
+        cursor.execute("select M.match_id, M.match_id, M.venue, CAST(M.date_time AS DATE), CAST(M.date_time AS TIME), T1.category, T1.format, C1.country_name, C2.country_name from Matches M INNER JOIN Teams T1 ON M.team_1_id = T1.team_id INNER JOIN Teams T2 ON M.team_2_id = T2.team_id INNER JOIN Countries C1 ON C1.country_code = T1.country_code INNER JOIN Countries C2 ON C2.country_code = T2.country_code WHERE M.completed IS NOT NULL AND M.completed = 1 AND T1.category = ? AND T1.format = ? --AND (C1.country_name = ? or C2.country_name = ?)", (self.his_table_cat, self.his_table_format))
 
-        # self.Match_History_Table.setRowCount(0)
+        self.Match_History_Table.setRowCount(0)
 
         result = cursor.fetchall()
         # print(result)
@@ -531,7 +531,7 @@ class UI(QMainWindow):
         # print(self.teams_table_year)
         self.populate_teams_table()
 
-    def players_country_change(self):
+    def players_name_change(self):
         self.players_table_name = "%" + (self.Players_Search_Name_Entry.text()).lower() + "%"
         self.populate_players_table()
 
