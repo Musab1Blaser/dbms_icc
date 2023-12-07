@@ -12,6 +12,8 @@ from Add_Match_Results_Functionality import AddMatchResultsDialog
 from Add_Match_Functionality import AddMatchDialog, RemoveMatchDialog, RespondMatchDialog
 from Filter_Matches_functionality import FilterMatchDialog
 
+import icc_icon
+
 class LogOutDialog(QDialog):
     def __init__(self):
         super(LogOutDialog, self).__init__() 
@@ -637,19 +639,19 @@ class UI(QMainWindow):
     #     self.populate_players_table()
 
 # Rohaan's credentials
-server = 'desktop-f0ere45'
-database = "ICC_Cricket_Management"
-windows_authentication = True 
-username = "sa"
-password = "password123"
-connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
-
-# Musab's credentials
-# server = "LAPTOP-D5M397KF\DBMS_LAB6"
+# server = 'desktop-f0ere45'
 # database = "ICC_Cricket_Management"
+# windows_authentication = True 
 # username = "sa"
 # password = "password123"
-# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
+# connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};Trusted_Connection=yes;'
+
+# Musab's credentials
+server = "LAPTOP-D5M397KF\DBMS_LAB6"
+database = "ICC_Cricket_Management"
+username = "sa"
+password = "password123"
+connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};DATABASE={database};UID={username};PWD={password};'
 
 # Hamza's credentials
 # server = 'LAPTOP-2LF8R7KR'
