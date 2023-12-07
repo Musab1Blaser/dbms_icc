@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>962</width>
+    <height>186</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QTableWidget" name="Player_Stats_Table">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>881</width>
+     <height>81</height>
+    </rect>
+   </property>
+   <row>
+    <property name="text">
+     <string/>
+    </property>
+   </row>
+   <column>
+    <property name="text">
+     <string>Player ID</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Player Name</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Category</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Format</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Country</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Age</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Alltime Runs</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Alltime Balls Played</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Alltime 4s</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Alltime 6s</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Alltime Balls Bowled</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Alltime Wickets Taken</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Alltime Runs Conceded</string>
+    </property>
+   </column>
+   <item row="0" column="0">
+    <property name="text">
+     <string>0</string>
+    </property>
+   </item>
+   <item row="0" column="5">
+    <property name="text">
+     <string>Test</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="Ok_Button">
+   <property name="geometry">
+    <rect>
+     <x>460</x>
+     <y>140</y>
+     <width>101</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>OK</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

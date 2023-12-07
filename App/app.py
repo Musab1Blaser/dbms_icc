@@ -12,6 +12,8 @@ from Add_Match_Results_Functionality import AddMatchResultsDialog
 from Add_Match_Functionality import AddMatchDialog, RemoveMatchDialog, RespondMatchDialog
 from Filter_Matches_functionality import FilterMatchDialog
 
+from View_Player_Functionality import ViewPlayerDialog
+
 import icc_icon
 
 class LogOutDialog(QDialog):
@@ -213,6 +215,9 @@ class UI(QMainWindow):
         
         # connect internal buttons
         # self.Players_Search_Button.clicked.connect(self.search_player)
+
+        # View Player
+        self.Players_View_Button.clicked.connect(self.view_player)
 
         # Scheduled Fixtures
         self.Scheduled_Matches_Upload_Button.hide()
@@ -606,6 +611,22 @@ class UI(QMainWindow):
         dlg = RemoveMatchDialog(self.connection_string, val_list)
         if dlg.exec():
             self.populate_pending_matches_table()
+
+    def view_player(self):
+        selected_row = -1
+        if not len(self.Players_Ranking_Table.selectedIndexes()):
+            return
+
+        selected_row = self.Players_Ranking_Table.currentRow()
+        player_id = self.Players_Ranking_Table.item(selected_row, 0).text()
+        player_name = self.Players_Ranking_Table.item(selected_row, 1).text()
+        category = self.players_table_cat
+        format = self.players_table_format
+        player_country = self.Players_Ranking_Table.item(selected_row, 3).text()
+        player_age = self.Players_Ranking_Table.item(selected_row, 4).text()
+
+        dlg = ViewPlayerDialog(player_id, player_name, category, format, player_country, player_age, self.connection_string)
+        dlg.exec()
 
     def respond_pending_match(self):
         selected_row = -1

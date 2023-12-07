@@ -331,7 +331,7 @@ QPushButton:hover {
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="Teams_Page">
      <widget class="QGroupBox" name="Team_Format_GroupBox">
@@ -1069,6 +1069,36 @@ QPushButton:hover {
        </property>
       </widget>
      </widget>
+     <widget class="QPushButton" name="Players_View_Button">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>580</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>View Player</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Match_History_Page">
      <widget class="QLabel" name="Match_History_Page_Label">
@@ -1319,6 +1349,36 @@ QPushButton:hover {
         <string>Team 2</string>
        </property>
       </column>
+     </widget>
+     <widget class="QPushButton" name="Players_View_Button_2">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>560</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Normal state */
+QPushButton {
+    background-color: #fff; /* Default background color */
+}
+
+/* Hover state */
+QPushButton:hover {
+    background-color: #ddf; /* Background color when hovered */
+}
+</string>
+      </property>
+      <property name="text">
+       <string>View Match</string>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="Scheduled_Fixtures_Page">
