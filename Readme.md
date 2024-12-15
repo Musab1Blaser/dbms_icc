@@ -16,3 +16,5 @@ connection_string = f'DRIVER={{ODBC Driver 17 for SQL Server}};SERVER={server};D
     In case of any error, run *Database_Clear.sql*
 
 - Run app.py. Install any necessary packages
+
+## [Demo](https://youtu.be/yz4mlXQm-No?si=SOKT1mlfzwcqZMxt)
